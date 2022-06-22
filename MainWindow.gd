@@ -12,6 +12,7 @@ onready var windows_container:Container=$Windows
 var current_window_index:int
 var windows:=[]
 
+
 func _ready() -> void:
 	windows = windows_container.get_children()
 	move_window(home)
@@ -25,6 +26,7 @@ func tween_window( target_x:float, duration:float):
 func move_window(chosen_window):
 	var index := windows.find(chosen_window)
 	current_window_index = index
+	EventBus.emit_signal("window_moved",index)
 	tween_window(-index*rect_size.x,0.2)
 
 	
@@ -40,7 +42,6 @@ func _input(event: InputEvent) -> void:
 			var drag_dist = start_drag_x - event.position.x
 			if drag_dist > rect_size.x * 0.4 \
 				and current_window_index+1 < windows.size():
-				
 				move_window(windows[current_window_index+1])
 			elif drag_dist < -rect_size.x * 0.4 \
 				and current_window_index - 1 >= 0:
