@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Roboto-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://MainWindow.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Calendar.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Tasks.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Graph.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Buttons.gd" type="Script" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -44,41 +45,46 @@ visible = false
 [node name="Tasks" parent="VBoxContainer/MainWindow" instance=ExtResource( 5 )]
 visible = false
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="Buttons" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 2114.0
 margin_right = 1066.0
 margin_bottom = 2326.0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.1
+script = ExtResource( 7 )
 
-[node name="HomeButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="HomeButton" type="Button" parent="VBoxContainer/Buttons"]
 margin_right = 263.0
 margin_bottom = 212.0
 size_flags_horizontal = 3
+toggle_mode = true
 text = "Home"
 
-[node name="CalendarButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="CalendarButton" type="Button" parent="VBoxContainer/Buttons"]
 margin_left = 267.0
 margin_right = 531.0
 margin_bottom = 212.0
 size_flags_horizontal = 3
+toggle_mode = true
 text = "Calendar"
 
-[node name="GraphButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="GraphButton" type="Button" parent="VBoxContainer/Buttons"]
 margin_left = 535.0
 margin_right = 798.0
 margin_bottom = 212.0
 size_flags_horizontal = 3
+toggle_mode = true
 text = "Graph"
 
-[node name="TasksButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="TasksButton" type="Button" parent="VBoxContainer/Buttons"]
 margin_left = 802.0
 margin_right = 1066.0
 margin_bottom = 212.0
 size_flags_horizontal = 3
+toggle_mode = true
 text = "Tasks"
 
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/HomeButton" to="VBoxContainer/MainWindow" method="_on_HomeButton_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/CalendarButton" to="VBoxContainer/MainWindow" method="_on_CalendarButton_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/GraphButton" to="VBoxContainer/MainWindow" method="_on_GraphButton_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/TasksButton" to="VBoxContainer/MainWindow" method="_on_TasksButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/Buttons/HomeButton" to="VBoxContainer/MainWindow" method="_on_HomeButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/Buttons/CalendarButton" to="VBoxContainer/MainWindow" method="_on_CalendarButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/Buttons/GraphButton" to="VBoxContainer/MainWindow" method="_on_GraphButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/Buttons/TasksButton" to="VBoxContainer/MainWindow" method="_on_TasksButton_pressed"]

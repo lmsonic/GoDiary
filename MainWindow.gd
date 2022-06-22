@@ -14,10 +14,7 @@ func _ready() -> void:
 
 func show_window(chosen_window:Control):
 	for window in windows:
-		if window==chosen_window:
-			chosen_window.show()
-		else:
-			window.hide()
+		window.visible = window==chosen_window
 
 
 func _on_HomeButton_pressed() -> void:
