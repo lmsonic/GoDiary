@@ -1,12 +1,14 @@
 [gd_scene format=2]
 
-[node name="Calendar" type="Control"]
+[node name="Calendar" type="PanelContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="Label" type="Label" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
+margin_left = 7.0
+margin_top = 1163.0
+margin_right = 1073.0
+margin_bottom = 1177.0
 text = "Calendar"
 align = 1
 valign = 1

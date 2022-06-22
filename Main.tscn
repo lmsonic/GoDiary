@@ -1,6 +1,6 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Roboto-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://theme.tres" type="Theme" id=1]
 [ext_resource path="res://MainWindow.gd" type="Script" id=2]
 [ext_resource path="res://Home.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Calendar.tscn" type="PackedScene" id=4]
@@ -8,18 +8,10 @@
 [ext_resource path="res://Graph.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Buttons.gd" type="Script" id=7]
 
-[sub_resource type="DynamicFont" id=1]
-size = 32
-use_filter = true
-font_data = ExtResource( 1 )
-
-[sub_resource type="Theme" id=2]
-default_font = SubResource( 1 )
-
 [node name="Main" type="PanelContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = SubResource( 2 )
+theme = ExtResource( 1 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_left = 7.0
@@ -33,17 +25,43 @@ margin_bottom = 2110.0
 size_flags_vertical = 3
 script = ExtResource( 2 )
 
-[node name="Home" parent="VBoxContainer/MainWindow" instance=ExtResource( 3 )]
-visible = false
+[node name="Windows" type="HBoxContainer" parent="VBoxContainer/MainWindow"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 3198.0
 
-[node name="Calendar" parent="VBoxContainer/MainWindow" instance=ExtResource( 4 )]
-visible = false
+[node name="Home" parent="VBoxContainer/MainWindow/Windows" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 1063.0
+margin_bottom = 2110.0
+size_flags_horizontal = 3
 
-[node name="Graph" parent="VBoxContainer/MainWindow" instance=ExtResource( 6 )]
-visible = false
+[node name="Calendar" parent="VBoxContainer/MainWindow/Windows" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 1067.0
+margin_right = 2130.0
+margin_bottom = 2110.0
+size_flags_horizontal = 3
 
-[node name="Tasks" parent="VBoxContainer/MainWindow" instance=ExtResource( 5 )]
-visible = false
+[node name="Graph" parent="VBoxContainer/MainWindow/Windows" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 2134.0
+margin_right = 3197.0
+margin_bottom = 2110.0
+size_flags_horizontal = 3
+
+[node name="Tasks" parent="VBoxContainer/MainWindow/Windows" instance=ExtResource( 5 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 3201.0
+margin_right = 4264.0
+margin_bottom = 2110.0
+size_flags_horizontal = 3
+
+[node name="Tween" type="Tween" parent="VBoxContainer/MainWindow"]
 
 [node name="Buttons" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 2114.0
@@ -84,6 +102,7 @@ size_flags_horizontal = 3
 toggle_mode = true
 text = "Tasks"
 
+[connection signal="resized" from="VBoxContainer/MainWindow" to="VBoxContainer/MainWindow" method="_on_MainWindow_resized"]
 [connection signal="pressed" from="VBoxContainer/Buttons/HomeButton" to="VBoxContainer/MainWindow" method="_on_HomeButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/Buttons/CalendarButton" to="VBoxContainer/MainWindow" method="_on_CalendarButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/Buttons/GraphButton" to="VBoxContainer/MainWindow" method="_on_GraphButton_pressed"]
