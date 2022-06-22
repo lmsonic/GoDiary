@@ -1,6 +1,11 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Roboto-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://MainWindow.gd" type="Script" id=2]
+[ext_resource path="res://Home.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Calendar.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Tasks.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Graph.tscn" type="PackedScene" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -21,10 +26,23 @@ margin_top = 7.0
 margin_right = 1073.0
 margin_bottom = 2333.0
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+[node name="MainWindow" type="Control" parent="VBoxContainer"]
 margin_right = 1066.0
 margin_bottom = 2110.0
 size_flags_vertical = 3
+script = ExtResource( 2 )
+
+[node name="Home" parent="VBoxContainer/MainWindow" instance=ExtResource( 3 )]
+visible = false
+
+[node name="Calendar" parent="VBoxContainer/MainWindow" instance=ExtResource( 4 )]
+visible = false
+
+[node name="Graph" parent="VBoxContainer/MainWindow" instance=ExtResource( 6 )]
+visible = false
+
+[node name="Tasks" parent="VBoxContainer/MainWindow" instance=ExtResource( 5 )]
+visible = false
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 2114.0
@@ -33,29 +51,34 @@ margin_bottom = 2326.0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.1
 
-[node name="Home" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="HomeButton" type="Button" parent="VBoxContainer/HBoxContainer"]
 margin_right = 263.0
 margin_bottom = 212.0
 size_flags_horizontal = 3
 text = "Home"
 
-[node name="Calendar" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="CalendarButton" type="Button" parent="VBoxContainer/HBoxContainer"]
 margin_left = 267.0
 margin_right = 531.0
 margin_bottom = 212.0
 size_flags_horizontal = 3
 text = "Calendar"
 
-[node name="Graph" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="GraphButton" type="Button" parent="VBoxContainer/HBoxContainer"]
 margin_left = 535.0
 margin_right = 798.0
 margin_bottom = 212.0
 size_flags_horizontal = 3
 text = "Graph"
 
-[node name="Tasks" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="TasksButton" type="Button" parent="VBoxContainer/HBoxContainer"]
 margin_left = 802.0
 margin_right = 1066.0
 margin_bottom = 212.0
 size_flags_horizontal = 3
 text = "Tasks"
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/HomeButton" to="VBoxContainer/MainWindow" method="_on_HomeButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/CalendarButton" to="VBoxContainer/MainWindow" method="_on_CalendarButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/GraphButton" to="VBoxContainer/MainWindow" method="_on_GraphButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/TasksButton" to="VBoxContainer/MainWindow" method="_on_TasksButton_pressed"]
