@@ -1,14 +1,60 @@
-[gd_scene format=2]
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Roboto-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://input.gd" type="Script" id=2]
+[ext_resource path="res://TodoList.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 40
+use_filter = true
+font_data = ExtResource( 1 )
 
 [node name="Tasks" type="PanelContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 3 )
 
-[node name="Label" type="Label" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_left = 7.0
-margin_top = 1163.0
+margin_top = 7.0
 margin_right = 1073.0
-margin_bottom = 1177.0
+margin_bottom = 2333.0
+
+[node name="Title" type="Label" parent="VBoxContainer"]
+margin_right = 1066.0
+margin_bottom = 48.0
+size_flags_vertical = 0
+custom_fonts/font = SubResource( 1 )
 text = "Tasks"
 align = 1
 valign = 1
+
+[node name="TodoList" type="VBoxContainer" parent="VBoxContainer"]
+margin_top = 52.0
+margin_right = 1066.0
+margin_bottom = 52.0
+
+[node name="input" type="HBoxContainer" parent="."]
+margin_left = 7.0
+margin_top = 2313.0
+margin_right = 1073.0
+margin_bottom = 2333.0
+size_flags_vertical = 8
+size_flags_stretch_ratio = 0.0
+script = ExtResource( 2 )
+
+[node name="TextEdit" type="TextEdit" parent="input"]
+margin_right = 1011.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+text = "Aggiungi una task.."
+
+[node name="Button" type="Button" parent="input"]
+margin_left = 1015.0
+margin_right = 1066.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.05
+
+[connection signal="new_todo" from="input" to="." method="add_todo"]
+[connection signal="pressed" from="input/Button" to="input" method="_on_Button_pressed"]
