@@ -25,6 +25,11 @@ _global_script_classes=[ {
 "path": "res://addons/calendar_button/class/Date.gd"
 }, {
 "base": "Resource",
+"class": "DateTime",
+"language": "GDScript",
+"path": "res://DateTime.gd"
+}, {
+"base": "Resource",
 "class": "NoteResource",
 "language": "GDScript",
 "path": "res://NoteResource.gd"
@@ -38,6 +43,7 @@ _global_script_class_icons={
 "Calendar": "",
 "CalendarButtons": "",
 "Date": "",
+"DateTime": "",
 "NoteResource": "",
 "WindowRestrictor": ""
 }

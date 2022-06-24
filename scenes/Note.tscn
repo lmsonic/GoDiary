@@ -20,7 +20,7 @@ script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
-note_resource = ExtResource( 7 )
+note = ExtResource( 7 )
 emojis = [ ExtResource( 10 ), ExtResource( 8 ), ExtResource( 12 ), ExtResource( 4 ), ExtResource( 9 ) ]
 
 [node name="HSeparator3" type="HSeparator" parent="."]

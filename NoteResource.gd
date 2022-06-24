@@ -10,8 +10,16 @@ enum Mood{
 	Happy
 }
 
-export(String) var date :String= "21-11-2021"
+func _init(mood=null,date_time:DateTime=DateTime.new(),\
+				text:String="", photo:Image=null, audio:AudioStream=null):
+	self.date_time = date_time
+	self.mood = mood
+	self.text = text
+	self.photo = photo
+	self.audio = audio
 
+
+export var date_time:Resource = date_time as DateTime
 
 export(Mood) var mood
 
