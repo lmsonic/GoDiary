@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Roboto-Regular.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://input.gd" type="Script" id=2]
-[ext_resource path="res://TodoList.gd" type="Script" id=3]
+[ext_resource path="res://scenes/input.gd" type="Script" id=2]
+[ext_resource path="res://scenes/TodoList.gd" type="Script" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 size = 40
@@ -22,17 +22,19 @@ margin_bottom = 2333.0
 
 [node name="Title" type="Label" parent="VBoxContainer"]
 margin_right = 1066.0
-margin_bottom = 48.0
+margin_bottom = 150.0
 size_flags_vertical = 0
 custom_fonts/font = SubResource( 1 )
-text = "Tasks"
+text = "
+
+Tasks"
 align = 1
 valign = 1
 
 [node name="TodoList" type="VBoxContainer" parent="VBoxContainer"]
-margin_top = 52.0
+margin_top = 154.0
 margin_right = 1066.0
-margin_bottom = 52.0
+margin_bottom = 154.0
 
 [node name="input" type="HBoxContainer" parent="."]
 margin_left = 7.0

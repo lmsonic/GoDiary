@@ -1,0 +1,22 @@
+[gd_scene format=2]
+
+[node name="Date" type="VBoxContainer"]
+margin_top = 52.0
+margin_right = 1066.0
+margin_bottom = 116.0
+
+[node name="HSeparator" type="HSeparator" parent="."]
+margin_right = 1066.0
+margin_bottom = 4.0
+
+[node name="Date" type="Label" parent="."]
+margin_top = 8.0
+margin_right = 1066.0
+margin_bottom = 22.0
+text = "28 May 2022"
+align = 1
+
+[node name="HSeparator2" type="HSeparator" parent="."]
+margin_top = 26.0
+margin_right = 1066.0
+margin_bottom = 30.0

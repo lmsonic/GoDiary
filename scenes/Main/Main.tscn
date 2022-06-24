@@ -1,12 +1,16 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://theme.tres" type="Theme" id=1]
-[ext_resource path="res://MainWindow.gd" type="Script" id=2]
-[ext_resource path="res://Home.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Calendar.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Tasks.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Graph.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Buttons.gd" type="Script" id=7]
+[ext_resource path="res://scenes/Main/MainWindow.gd" type="Script" id=2]
+[ext_resource path="res://scenes/Home.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/Calendar.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/Tasks.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/Graph.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/Main/Buttons.gd" type="Script" id=7]
+[ext_resource path="res://assets/home.png" type="Texture" id=8]
+[ext_resource path="res://assets/calendar.png" type="Texture" id=9]
+[ext_resource path="res://assets/graph.png" type="Texture" id=10]
+[ext_resource path="res://assets/list.png" type="Texture" id=11]
 
 [node name="Main" type="PanelContainer"]
 anchor_right = 1.0
@@ -71,36 +75,44 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 0.1
 script = ExtResource( 7 )
 
-[node name="HomeButton" type="Button" parent="VBoxContainer/Buttons"]
+[node name="HomeButton" type="TextureButton" parent="VBoxContainer/Buttons"]
 margin_right = 263.0
 margin_bottom = 212.0
 size_flags_horizontal = 3
 toggle_mode = true
-text = "Home"
+texture_normal = ExtResource( 8 )
+expand = true
+stretch_mode = 5
 
-[node name="CalendarButton" type="Button" parent="VBoxContainer/Buttons"]
+[node name="CalendarButton" type="TextureButton" parent="VBoxContainer/Buttons"]
 margin_left = 267.0
 margin_right = 531.0
 margin_bottom = 212.0
 size_flags_horizontal = 3
 toggle_mode = true
-text = "Calendar"
+texture_normal = ExtResource( 9 )
+expand = true
+stretch_mode = 5
 
-[node name="GraphButton" type="Button" parent="VBoxContainer/Buttons"]
+[node name="GraphButton" type="TextureButton" parent="VBoxContainer/Buttons"]
 margin_left = 535.0
 margin_right = 798.0
 margin_bottom = 212.0
 size_flags_horizontal = 3
 toggle_mode = true
-text = "Graph"
+texture_normal = ExtResource( 10 )
+expand = true
+stretch_mode = 5
 
-[node name="TasksButton" type="Button" parent="VBoxContainer/Buttons"]
+[node name="TasksButton" type="TextureButton" parent="VBoxContainer/Buttons"]
 margin_left = 802.0
 margin_right = 1066.0
 margin_bottom = 212.0
 size_flags_horizontal = 3
 toggle_mode = true
-text = "Tasks"
+texture_normal = ExtResource( 11 )
+expand = true
+stretch_mode = 5
 
 [connection signal="resized" from="VBoxContainer/MainWindow" to="VBoxContainer/MainWindow" method="reset_window_container"]
 [connection signal="pressed" from="VBoxContainer/Buttons/HomeButton" to="VBoxContainer/MainWindow" method="_on_HomeButton_pressed"]
