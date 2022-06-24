@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://NoteResource.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+date = "21-11-2021"
+mood = 3
+text = "Meh....."

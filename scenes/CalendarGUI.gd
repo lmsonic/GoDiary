@@ -25,13 +25,13 @@ func setup_month_and_year_signals():
 	get_node(month_year_path + "button_prev_year").connect("pressed",self,"go_prev_year")
 	get_node(month_year_path + "button_next_year").connect("pressed",self,"go_next_year")
 
-func set_popup_title(title : String):
+func set_month_year_title(title : String):
 	var label_month_year_node := get_node("vbox/hbox_month_year/label_month_year") as Label
 	label_month_year_node.set_text(title)
 
 func refresh_data():
 	var title : String = str(calendar.get_month_name(selected_date.month()) + " " + str(selected_date.year()))
-	set_popup_title(title)
+	set_month_year_title(title)
 	calendar_buttons.update_calendar_buttons(selected_date)
 
 func day_selected(btn_node):

@@ -1,27 +1,48 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://theme.tres" type="Theme" id=1]
 [ext_resource path="res://assets/microphone.png" type="Texture" id=2]
 [ext_resource path="res://assets/camera.png" type="Texture" id=3]
 [ext_resource path="res://assets/emojis/smile-beam.png" type="Texture" id=4]
 [ext_resource path="res://assets/edit.png" type="Texture" id=5]
+[ext_resource path="res://scenes/Note.gd" type="Script" id=6]
+[ext_resource path="res://example_note.tres" type="Resource" id=7]
+[ext_resource path="res://assets/emojis/sad-cry.png" type="Texture" id=8]
+[ext_resource path="res://assets/emojis/grin-stars.png" type="Texture" id=9]
+[ext_resource path="res://assets/emojis/dizzy.png" type="Texture" id=10]
+[ext_resource path="res://assets/emojis/meh.png" type="Texture" id=12]
 
 [node name="Note" type="VBoxContainer"]
 anchor_right = 1.0
 anchor_bottom = 0.158974
 theme = ExtResource( 1 )
+script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
+note_resource = ExtResource( 7 )
+emojis = [ ExtResource( 10 ), ExtResource( 8 ), ExtResource( 12 ), ExtResource( 4 ), ExtResource( 9 ) ]
 
-[node name="HSeparator" type="HSeparator" parent="."]
+[node name="HSeparator3" type="HSeparator" parent="."]
 margin_right = 1080.0
 margin_bottom = 4.0
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+[node name="Date" type="Label" parent="."]
 margin_top = 8.0
 margin_right = 1080.0
-margin_bottom = 260.0
+margin_bottom = 56.0
+text = "28 May 2022"
+align = 1
+
+[node name="HSeparator" type="HSeparator" parent="."]
+margin_top = 60.0
+margin_right = 1080.0
+margin_bottom = 64.0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+margin_top = 68.0
+margin_right = 1080.0
+margin_bottom = 320.0
 
 [node name="Emoji" type="TextureRect" parent="HBoxContainer2"]
 margin_right = 100.0
@@ -32,7 +53,7 @@ texture = ExtResource( 4 )
 expand = true
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="HBoxContainer2"]
+[node name="Text" type="Label" parent="HBoxContainer2"]
 margin_left = 104.0
 margin_right = 1080.0
 margin_bottom = 252.0
@@ -44,9 +65,9 @@ align = 1
 autowrap = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-margin_top = 264.0
+margin_top = 324.0
 margin_right = 1080.0
-margin_bottom = 364.0
+margin_bottom = 424.0
 alignment = 1
 
 [node name="Edit" type="TextureButton" parent="HBoxContainer"]
@@ -77,6 +98,6 @@ expand = true
 stretch_mode = 4
 
 [node name="HSeparator2" type="HSeparator" parent="."]
-margin_top = 368.0
+margin_top = 428.0
 margin_right = 1080.0
-margin_bottom = 372.0
+margin_bottom = 432.0
