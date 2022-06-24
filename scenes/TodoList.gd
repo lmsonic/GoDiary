@@ -1,27 +1,18 @@
 extends PanelContainer
 
+onready var todo_list:= $VBoxContainer/TodoList
+onready var input:= $VBoxContainer/Input
+onready var old_height:int = input.rect_position.y
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-onready var old_pos :float = $Input.rect_position.y
-
-# Called when the node enters the scene tree for the first time.
-	
 func _process(delta):
-	if is_virtual_keyboard_shown():
-		var kb_pos = OS.get_virtual_keyboard_height()
-		$Input.rect_position.y -= kb_pos.y
+	var kb_height = OS.get_virtual_keyboard_height()
+	if kb_height > 0:
+		print(kb_height)
+		input.rect_position.y = old_height - kb_height
 	else:
-		$Input.rect_position.y = old_pos
+		input.rect_position.y = old_height
 
 func add_todo(text):
 	var todo_item = Label.new()
 	todo_item.text = text
-	$VBoxContainer/TodoList.add_child(todo_item)
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
-func is_virtual_keyboard_shown():
-	return OS.get_virtual_keyboard_height() != 0
+	todo_list.add_child(todo_item)

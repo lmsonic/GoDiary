@@ -27,12 +27,12 @@ _global_script_classes=[ {
 "base": "Resource",
 "class": "DateTime",
 "language": "GDScript",
-"path": "res://DateTime.gd"
+"path": "res://resources/DateTime.gd"
 }, {
 "base": "Resource",
 "class": "NoteResource",
 "language": "GDScript",
-"path": "res://NoteResource.gd"
+"path": "res://resources/NoteResource.gd"
 }, {
 "base": "Reference",
 "class": "WindowRestrictor",
