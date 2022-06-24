@@ -74,21 +74,21 @@ margin_right = 1049.0
 
 [node name="TodoList" parent="VBoxContainer/MainWindow/Windows/Tasks/VBoxContainer" index="1"]
 margin_right = 1049.0
-margin_bottom = 1928.0
+margin_bottom = 2006.0
 
 [node name="Input" parent="VBoxContainer/MainWindow/Windows/Tasks/VBoxContainer" index="2"]
-margin_top = 1932.0
+margin_top = 2010.0
 margin_right = 1049.0
 margin_bottom = 2096.0
 
-[node name="TextEdit" parent="VBoxContainer/MainWindow/Windows/Tasks/VBoxContainer/Input" index="0"]
-margin_right = 995.0
-margin_bottom = 164.0
+[node name="LineEdit" parent="VBoxContainer/MainWindow/Windows/Tasks/VBoxContainer/Input" index="0"]
+margin_right = 870.0
+margin_bottom = 86.0
 
 [node name="Button" parent="VBoxContainer/MainWindow/Windows/Tasks/VBoxContainer/Input" index="1"]
-margin_left = 999.0
+margin_left = 874.0
 margin_right = 1049.0
-margin_bottom = 164.0
+margin_bottom = 86.0
 
 [node name="Tween" type="Tween" parent="VBoxContainer/MainWindow"]
 

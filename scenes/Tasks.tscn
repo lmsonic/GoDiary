@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Roboto-Regular.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://scenes/input.gd" type="Script" id=2]
 [ext_resource path="res://scenes/TodoList.gd" type="Script" id=3]
 [ext_resource path="res://theme.tres" type="Theme" id=4]
 
@@ -36,30 +35,28 @@ valign = 1
 [node name="TodoList" type="VBoxContainer" parent="VBoxContainer"]
 margin_top = 295.0
 margin_right = 1066.0
-margin_bottom = 2137.0
+margin_bottom = 2225.0
 size_flags_vertical = 3
 
 [node name="Input" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 2141.0
+margin_top = 2229.0
 margin_right = 1066.0
 margin_bottom = 2326.0
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.1
-script = ExtResource( 2 )
-
-[node name="TextEdit" type="TextEdit" parent="VBoxContainer/Input"]
-margin_right = 1011.0
-margin_bottom = 185.0
-size_flags_horizontal = 3
-text = "Aggiungi una task.."
-readonly = true
-
-[node name="Button" type="Button" parent="VBoxContainer/Input"]
-margin_left = 1015.0
-margin_right = 1066.0
-margin_bottom = 185.0
-size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.05
 
-[connection signal="new_todo" from="VBoxContainer/Input" to="." method="add_todo"]
-[connection signal="pressed" from="VBoxContainer/Input/Button" to="VBoxContainer/Input" method="_on_Button_pressed"]
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/Input"]
+margin_right = 884.0
+margin_bottom = 97.0
+size_flags_horizontal = 3
+clear_button_enabled = true
+placeholder_text = "Inserisci nota..."
+
+[node name="Button" type="Button" parent="VBoxContainer/Input"]
+margin_left = 888.0
+margin_right = 1066.0
+margin_bottom = 97.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.2
+
+[connection signal="pressed" from="VBoxContainer/Input/Button" to="." method="_on_Button_pressed"]
