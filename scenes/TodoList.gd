@@ -3,12 +3,19 @@ extends PanelContainer
 onready var todo_list:= $VBoxContainer/TodoList
 onready var line_edit:LineEdit= $VBoxContainer/Input/LineEdit
 onready var input:= $VBoxContainer/Input
-onready var old_height:int = input.rect_position.y
+ 
+var old_height
 
 func _process(delta):
-	var kb_height = OS.get_virtual_keyboard_height()
+	if not old_height:
+		old_height = input.rect_position.y
+	
+	var kb_height := OS.get_virtual_keyboard_height()
+	print(kb_height)
+	print(old_height)
+
+
 	if kb_height > 0:
-		print(kb_height)
 		input.rect_position.y = old_height - kb_height
 	else:
 		input.rect_position.y = old_height

@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
+[ext_resource path="res://Roboto-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://scenes/Note.tscn" type="PackedScene" id=2]
 [ext_resource path="res://theme.tres" type="Theme" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 80
+use_filter = true
+font_data = ExtResource( 1 )
 
 [node name="Home" type="PanelContainer"]
 anchor_right = 1.0
@@ -9,29 +15,30 @@ anchor_bottom = 1.0
 theme = ExtResource( 3 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 1073.0
-margin_bottom = 2333.0
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 1075.0
+margin_bottom = 2335.0
 
 [node name="Title" type="Label" parent="VBoxContainer"]
-margin_right = 1066.0
-margin_bottom = 150.0
+margin_right = 1070.0
+margin_bottom = 291.0
+custom_fonts/font = SubResource( 1 )
 text = "
 
 Home"
 align = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
-margin_top = 154.0
-margin_right = 1066.0
-margin_bottom = 2326.0
+margin_top = 295.0
+margin_right = 1070.0
+margin_bottom = 2330.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 scroll_horizontal_enabled = false
 
 [node name="Notes" type="VBoxContainer" parent="VBoxContainer/ScrollContainer"]
-margin_right = 1054.0
+margin_right = 1058.0
 margin_bottom = 3892.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -39,54 +46,54 @@ size_flags_vertical = 3
 [node name="Note" parent="VBoxContainer/ScrollContainer/Notes" instance=ExtResource( 2 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 1054.0
+margin_right = 1058.0
 margin_bottom = 483.0
 
 [node name="Note2" parent="VBoxContainer/ScrollContainer/Notes" instance=ExtResource( 2 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 487.0
-margin_right = 1054.0
+margin_right = 1058.0
 margin_bottom = 970.0
 
 [node name="Note3" parent="VBoxContainer/ScrollContainer/Notes" instance=ExtResource( 2 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 974.0
-margin_right = 1054.0
+margin_right = 1058.0
 margin_bottom = 1457.0
 
 [node name="Note4" parent="VBoxContainer/ScrollContainer/Notes" instance=ExtResource( 2 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 1461.0
-margin_right = 1054.0
+margin_right = 1058.0
 margin_bottom = 1944.0
 
 [node name="Note5" parent="VBoxContainer/ScrollContainer/Notes" instance=ExtResource( 2 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 1948.0
-margin_right = 1054.0
+margin_right = 1058.0
 margin_bottom = 2431.0
 
 [node name="Note6" parent="VBoxContainer/ScrollContainer/Notes" instance=ExtResource( 2 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 2435.0
-margin_right = 1054.0
+margin_right = 1058.0
 margin_bottom = 2918.0
 
 [node name="Note7" parent="VBoxContainer/ScrollContainer/Notes" instance=ExtResource( 2 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 2922.0
-margin_right = 1054.0
+margin_right = 1058.0
 margin_bottom = 3405.0
 
 [node name="Note8" parent="VBoxContainer/ScrollContainer/Notes" instance=ExtResource( 2 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 3409.0
-margin_right = 1054.0
+margin_right = 1058.0
 margin_bottom = 3892.0

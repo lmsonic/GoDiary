@@ -3,7 +3,9 @@ extends HBoxContainer
 var buttons:=[]
 
 func _ready() -> void:
-	buttons.append_array(get_children())
+	for child in get_children():
+		buttons.append(child.get_child(0))
+		
 	buttons[0].pressed=true
 	
 	for i in buttons.size():
