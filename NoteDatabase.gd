@@ -15,6 +15,18 @@ var notes_database:=[
 		"Natale....")
 ]
 
+func get_notes_for_date(date:Date) -> Array:
+	var notes:=load_notes()
+	var day_notes:= []
+	for note in notes:
+		note = note as NoteResource
+		var date_time : DateTime = note.date_time
+		if CalendarSingleton.date_time_equal_date(date_time,date):
+			day_notes.append(note)
+	return day_notes
+		
+
+
 func add_note(note:NoteResource) ->void: 
 	notes_database.append(note)
 

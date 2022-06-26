@@ -50,7 +50,7 @@ func set_popup_title(title : String):
 func refresh_data():
 	var title : String = str(calendar.get_month_name(selected_date.month()) + " " + str(selected_date.year()))
 	set_popup_title(title)
-	calendar_buttons.update_calendar_buttons(selected_date,[])
+	calendar_buttons.update_calendar_buttons(selected_date)
 
 func day_selected(btn_node):
 	close_popup()

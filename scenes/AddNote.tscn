@@ -1,6 +1,6 @@
 [gd_scene load_steps=24 format=2]
 
-[ext_resource path="res://scenes/EditNote/EditNote.gd" type="Script" id=1]
+[ext_resource path="res://scenes/AddNote.gd" type="Script" id=1]
 [ext_resource path="res://assets/emojis/moods/4content.png" type="Texture" id=2]
 [ext_resource path="res://assets/emojis/moods/1sadwhite.png" type="Texture" id=3]
 [ext_resource path="res://assets/emojis/moods/5happywhite.png" type="Texture" id=4]
@@ -33,7 +33,7 @@ font_data = ExtResource( 13 )
 size = 80
 font_data = ExtResource( 13 )
 
-[node name="EditNote" type="PanelContainer"]
+[node name="AddNote" type="PanelContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 16 )
@@ -51,7 +51,7 @@ margin_bottom = 389.0
 custom_fonts/font = SubResource( 1 )
 text = "
 
-Edit Note
+Add Note
 "
 align = 1
 valign = 1

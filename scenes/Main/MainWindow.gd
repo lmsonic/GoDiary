@@ -14,6 +14,7 @@ var windows:=[]
 
 
 func _ready() -> void:
+	get_tree().set_quit_on_go_back(true)
 	windows = windows_container.get_children()
 	move_window(home)
 	windows_container.rect_size.x = rect_size.x * windows.size()

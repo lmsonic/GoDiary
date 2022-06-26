@@ -17,7 +17,9 @@ func setup_button_signals(var calendar_script):
 		var btn_node = buttons_container.get_node("btn_" + str(i))
 		btn_node.connect("pressed", calendar_script, "day_selected", [btn_node])
 
-func update_calendar_buttons(var selected_date : Date,var notes: Array):
+
+
+func update_calendar_buttons(var selected_date : Date):
 	_clear_calendar_buttons()
 	
 	
@@ -33,12 +35,30 @@ func update_calendar_buttons(var selected_date : Date,var notes: Array):
 			btn_node.set_flat(true)
 		else:
 			btn_node.set_flat(false)
-			
-		for note in notes:
-			note = note as NoteResource
-			var date_time : DateTime = note.date_time
-			if(i + 1 == date_time.day && selected_date.year() == date_time.year && selected_date.month() == date_time.month ):
-				btn_node.modulate = mood_colors[note.mood]
+		
+		var date :=Date.new(i+1,selected_date.month(),selected_date.year())
+		var notes:=NoteDatabase.get_notes_for_date(date)
+		var colors:= get_colors_moods(notes)
+		if notes.size()>0:
+			btn_node.modulate = average_colors(colors)
+		else:
+			btn_node.modulate = Color.white
+
+func average_colors(colors:Array) -> Color:
+	var average:=Color(0,0,0,1)
+	for color in colors:
+		average.r += color.r
+		average.g += color.g
+		average.b += color.b
+		
+	return average
+		
+func get_colors_moods(notes:Array) -> Array:
+	var colors:=[]
+	for note in notes:
+		note = note as NoteResource
+		colors.append(mood_colors[note.mood])
+	return colors
 
 func _clear_calendar_buttons():
 	for i in range(BUTTONS_COUNT):

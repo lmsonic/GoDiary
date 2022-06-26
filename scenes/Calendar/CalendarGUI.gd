@@ -6,8 +6,13 @@ var calendar := Calendar.new()
 var selected_date := Date.new()
 var window_restrictor := WindowRestrictor.new()
 
-
 var calendar_buttons : CalendarButtons
+
+var day_prefab:=preload("res://scenes/Calendar/Day.tscn")
+
+func _on_CalendarGUI_date_selected(date_obj) -> void:
+	CalendarSingleton.selected_date = date_obj
+	get_tree().change_scene_to(day_prefab)
 
 func _ready():
 	calendar_buttons = create_calendar_buttons()
@@ -32,8 +37,7 @@ func set_month_year_title(title : String):
 func refresh_data():
 	var title : String = str(calendar.get_month_name(selected_date.month()) + " " + str(selected_date.year()))
 	set_month_year_title(title)
-	var notes:=NoteDatabase.load_notes()
-	calendar_buttons.update_calendar_buttons(selected_date,notes)
+	calendar_buttons.update_calendar_buttons(selected_date)
 
 func day_selected(btn_node):
 	var day := int(btn_node.get_text())

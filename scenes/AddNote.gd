@@ -14,9 +14,17 @@ onready var buttons_container:=$VBoxContainer/ButtonsContainer
 onready var tween:Tween=$Tween
 
 
-var note:NoteResource=NoteResource.new()
+var note:NoteResource = NoteResource.new()
 
 func _ready() -> void:
+	get_tree().set_quit_on_go_back(false)
+	
+	if CalendarSingleton.selected_date != null:
+		note.date_time.day = CalendarSingleton.selected_date.day
+		note.date_time.month = CalendarSingleton.selected_date.month
+		note.date_time.year = CalendarSingleton.selected_date.year
+		
+	
 	refresh_date()
 	hour_label.text = str(note.date_time.hour).pad_zeros(2)
 	minute_label.text = str(note.date_time.minute).pad_zeros(2)
@@ -24,7 +32,14 @@ func _ready() -> void:
 	text_edit.text=note.text
 	camera_button.pressed = note.photo != null
 	audio_button.pressed = note.audio != null
-	
+
+
+func _notification(what):
+	if what == MainLoop.NOTIFICATION_WM_GO_BACK_REQUEST:
+		if CalendarSingleton.selected_date == null:
+			get_tree().change_scene("res://scenes/Main/Main.tscn")
+		else:
+			get_tree().change_scene("res://scenes/Calendar/Day.tscn")
 	
 	
 

@@ -23,7 +23,7 @@ export(int,0,60) var minute
 
 func get_date_string() -> String:
 	var weekday := get_weekday_name(day,month,year)
-	return str(day) + " " + get_month_name(month) + " " + str(year)
+	return weekday + " " + str(day) + " " + get_month_name(month) + " " + str(year)
 	
 func get_hour_minute_string() -> String:
 	return str(hour).pad_zeros(2)+":"+str(minute).pad_zeros(2)
