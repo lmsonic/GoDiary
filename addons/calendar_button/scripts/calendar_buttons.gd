@@ -47,9 +47,9 @@ func update_calendar_buttons(var selected_date : Date):
 func average_colors(colors:Array) -> Color:
 	var average:=Color(0,0,0,1)
 	for color in colors:
-		average.r += color.r
-		average.g += color.g
-		average.b += color.b
+		average.r += color.r * color.r
+		average.g += color.g * color.g
+		average.b += color.b * color.b 
 		
 	return average/colors.size()
 		
