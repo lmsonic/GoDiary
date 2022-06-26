@@ -51,7 +51,7 @@ func average_colors(colors:Array) -> Color:
 		average.g += color.g
 		average.b += color.b
 		
-	return average
+	return average/colors.size()
 		
 func get_colors_moods(notes:Array) -> Array:
 	var colors:=[]
