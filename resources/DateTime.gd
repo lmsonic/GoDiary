@@ -28,6 +28,9 @@ func get_date_string() -> String:
 func get_hour_minute_string() -> String:
 	return str(hour).pad_zeros(2)+":"+str(minute).pad_zeros(2)
 
+func _to_string() -> String:
+	return get_date_string() + " " + get_hour_minute_string()
+
 func _init(day:int=day(),month=month(),year=year(),\
 			hour=hour(),minute=minute()) -> void:
 	self.day = day

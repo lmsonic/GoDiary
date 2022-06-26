@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://resources/DateTime.gd"
 }, {
+"base": "VBoxContainer",
+"class": "Note",
+"language": "GDScript",
+"path": "res://scenes/Note.gd"
+}, {
 "base": "Resource",
 "class": "NoteResource",
 "language": "GDScript",
@@ -44,6 +49,7 @@ _global_script_class_icons={
 "CalendarButtons": "",
 "Date": "",
 "DateTime": "",
+"Note": "",
 "NoteResource": "",
 "WindowRestrictor": ""
 }
@@ -58,6 +64,7 @@ config/icon="res://icon.png"
 [autoload]
 
 EventBus="*res://EventBus.gd"
+NoteDatabase="*res://NoteDatabase.gd"
 
 [display]
 

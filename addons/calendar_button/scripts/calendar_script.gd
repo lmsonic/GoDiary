@@ -10,6 +10,9 @@ var window_restrictor := WindowRestrictor.new()
 var popup : Popup
 var calendar_buttons : CalendarButtons
 
+var normal_texture:StreamTexture = preload("res://addons/calendar_button/btn_img/btn_32x32_03.png")
+var pressed_texture:StreamTexture = preload("res://addons/calendar_button/btn_img/btn_32x32_04.png")
+
 func _enter_tree():
 	set_toggle_mode(true)
 	setup_calendar_icon()
@@ -19,18 +22,8 @@ func _enter_tree():
 	refresh_data()
 
 func setup_calendar_icon():
-	var normal_texture := create_button_texture("btn_32x32_03.png")
 	set_normal_texture(normal_texture)
-
-	var pressed_texture := create_button_texture("btn_32x32_04.png")
 	set_pressed_texture(pressed_texture)
-
-func create_button_texture(var image_name : String) -> ImageTexture:
-	var image_normal := Image.new()
-	image_normal.load("res://addons/calendar_button/btn_img/" + image_name)
-	var image_texture_normal := ImageTexture.new()
-	image_texture_normal.create_from_image(image_normal)
-	return image_texture_normal
 	
 func create_popup_scene() -> Popup:
 	return preload("res://addons/calendar_button/popup.tscn").instance() as Popup
@@ -53,7 +46,7 @@ func set_popup_title(title : String):
 func refresh_data():
 	var title : String = str(calendar.get_month_name(selected_date.month()) + " " + str(selected_date.year()))
 	set_popup_title(title)
-	calendar_buttons.update_calendar_buttons(selected_date)
+	calendar_buttons.update_calendar_buttons(selected_date,[])
 
 func day_selected(btn_node):
 	close_popup()

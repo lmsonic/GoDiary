@@ -32,7 +32,8 @@ func set_month_year_title(title : String):
 func refresh_data():
 	var title : String = str(calendar.get_month_name(selected_date.month()) + " " + str(selected_date.year()))
 	set_month_year_title(title)
-	calendar_buttons.update_calendar_buttons(selected_date)
+	var notes:=NoteDatabase.load_notes()
+	calendar_buttons.update_calendar_buttons(selected_date,notes)
 
 func day_selected(btn_node):
 	var day := int(btn_node.get_text())

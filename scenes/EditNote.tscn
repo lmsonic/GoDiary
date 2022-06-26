@@ -1,0 +1,133 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://theme.tres" type="Theme" id=1]
+[ext_resource path="res://Roboto-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://addons/calendar_button/scripts/calendar_script.gd" type="Script" id=3]
+[ext_resource path="res://scenes/EditNote.gd" type="Script" id=4]
+[ext_resource path="res://addons/calendar_button/btn_img/btn_32x32_03.png" type="Texture" id=5]
+[ext_resource path="res://addons/calendar_button/btn_img/btn_32x32_04.png" type="Texture" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+size = 80
+font_data = ExtResource( 2 )
+
+[node name="EditNote" type="PanelContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 4 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 1075.0
+margin_bottom = 2335.0
+
+[node name="Title" type="Label" parent="VBoxContainer"]
+margin_right = 1070.0
+margin_bottom = 389.0
+custom_fonts/font = SubResource( 1 )
+text = "
+
+Edit Note
+"
+align = 1
+valign = 1
+
+[node name="DateContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 393.0
+margin_right = 1070.0
+margin_bottom = 543.0
+
+[node name="Title" type="Label" parent="VBoxContainer/DateContainer"]
+margin_right = 225.0
+margin_bottom = 150.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.3
+text = "
+Date:
+"
+align = 1
+valign = 1
+
+[node name="CalendarButton" type="TextureButton" parent="VBoxContainer/DateContainer"]
+margin_left = 229.0
+margin_right = 568.0
+margin_bottom = 150.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.45
+toggle_mode = true
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 6 )
+expand = true
+stretch_mode = 5
+script = ExtResource( 3 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/DateContainer"]
+margin_left = 572.0
+margin_right = 1070.0
+margin_bottom = 150.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.66
+
+[node name="DateLabel" type="Label" parent="VBoxContainer/DateContainer/VBoxContainer"]
+margin_right = 498.0
+margin_bottom = 78.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "21-11-2021"
+align = 1
+valign = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/DateContainer/VBoxContainer"]
+margin_top = 82.0
+margin_right = 498.0
+margin_bottom = 150.0
+size_flags_horizontal = 3
+
+[node name="HourLabel" type="LineEdit" parent="VBoxContainer/DateContainer/VBoxContainer/HBoxContainer"]
+margin_right = 140.0
+margin_bottom = 68.0
+size_flags_vertical = 3
+text = "10"
+align = 1
+max_length = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/DateContainer/VBoxContainer/HBoxContainer"]
+margin_left = 144.0
+margin_right = 154.0
+margin_bottom = 68.0
+size_flags_vertical = 3
+text = ":"
+align = 1
+valign = 1
+
+[node name="MinuteLabel" type="LineEdit" parent="VBoxContainer/DateContainer/VBoxContainer/HBoxContainer"]
+margin_left = 158.0
+margin_right = 298.0
+margin_bottom = 68.0
+size_flags_vertical = 3
+text = "00"
+align = 1
+max_length = 2
+context_menu_enabled = false
+shortcut_keys_enabled = false
+
+[node name="Button" type="Button" parent="VBoxContainer/DateContainer/VBoxContainer/HBoxContainer"]
+margin_left = 302.0
+margin_right = 498.0
+margin_bottom = 68.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "OK"
+
+[node name="Tween" type="Tween" parent="."]
+
+[connection signal="date_selected" from="VBoxContainer/DateContainer/CalendarButton" to="." method="_on_CalendarButton_date_selected"]
+[connection signal="text_changed" from="VBoxContainer/DateContainer/VBoxContainer/HBoxContainer/HourLabel" to="." method="_on_HourLabel_text_changed"]
+[connection signal="text_changed" from="VBoxContainer/DateContainer/VBoxContainer/HBoxContainer/MinuteLabel" to="." method="_on_MinuteLabel_text_changed"]
+[connection signal="pressed" from="VBoxContainer/DateContainer/VBoxContainer/HBoxContainer/Button" to="." method="_on_Button_pressed"]
+[connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]

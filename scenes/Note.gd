@@ -1,5 +1,5 @@
 extends VBoxContainer
-
+class_name Note
 export(Resource) onready var note:Resource = note as NoteResource
 
 export (Array,Texture) var emojis
