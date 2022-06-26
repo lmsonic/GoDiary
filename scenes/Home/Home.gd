@@ -2,7 +2,7 @@ extends PanelContainer
 
 onready var notes_container:=$VBoxContainer/ScrollContainer/NotesContainer
 var note_prefab:=preload("res://scenes/Note.tscn")
-var edit_note:=preload("res://scenes/EditNote.tscn")
+var edit_note:=preload("res://scenes/EditNote/EditNote.tscn")
 
 func _ready() -> void:
 	var notes_resources := NoteDatabase.load_notes()
