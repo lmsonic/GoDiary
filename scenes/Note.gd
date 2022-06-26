@@ -20,8 +20,8 @@ func _ready() -> void:
 	date_label.text = date_time.get_date_string() + '\n' +\
 					date_time.get_hour_minute_string()
 					
-	if not note.photo: 
+	if note.photo == null: 
 		camera.hide()
-	if not note.audio: 
+	if note.audio == null: 
 		microphone.hide()
 	

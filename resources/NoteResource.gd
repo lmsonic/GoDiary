@@ -10,7 +10,7 @@ enum Mood{
 	Happy
 }
 
-func _init(mood=null,date_time:DateTime=DateTime.new(),\
+func _init(mood=Mood.Meh,date_time:DateTime=DateTime.new(),\
 				text:String="", photo:Image=null, audio:AudioStream=null):
 	self.date_time = date_time
 	self.mood = mood
@@ -27,4 +27,4 @@ export(String,MULTILINE) var text :String
 
 export(Image) var photo :Image
 
-export(AudioStream) var audio:AudioStream
+export(AudioStreamSample) var audio:AudioStream

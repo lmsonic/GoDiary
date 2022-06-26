@@ -15,6 +15,9 @@ var notes_database:=[
 		"Natale....")
 ]
 
+func add_note(note:NoteResource) ->void: 
+	notes_database.append(note)
+
 func load_notes() -> Array:
 	return notes_database
 

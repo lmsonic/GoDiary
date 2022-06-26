@@ -20,7 +20,11 @@ func _enter_tree():
 	calendar_buttons = create_calendar_buttons()
 	setup_month_and_year_signals(popup)
 	refresh_data()
-
+	
+func _ready() -> void:
+	var close_button:Button= popup.get_node("PanelContainer/vbox/CloseButton")
+	close_button.connect("pressed",self,"close_popup")
+	
 func setup_calendar_icon():
 	set_normal_texture(normal_texture)
 	set_pressed_texture(pressed_texture)

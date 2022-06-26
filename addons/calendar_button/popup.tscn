@@ -15,33 +15,42 @@ margin_bottom = 692.0
 margin_left = 5.0
 margin_top = 5.0
 margin_right = 813.0
-margin_bottom = 687.0
+margin_bottom = 880.0
 alignment = 1
 
-[node name="hbox_month_year" type="HBoxContainer" parent="PanelContainer/vbox"]
+[node name="CloseButton" type="Button" parent="PanelContainer/vbox"]
+margin_left = 709.0
 margin_right = 808.0
-margin_bottom = 68.0
+margin_bottom = 80.0
+size_flags_horizontal = 10
+size_flags_vertical = 3
+text = "  X  "
+
+[node name="hbox_month_year" type="HBoxContainer" parent="PanelContainer/vbox"]
+margin_top = 84.0
+margin_right = 808.0
+margin_bottom = 164.0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.15
 alignment = 1
 
 [node name="button_prev_month" type="Button" parent="PanelContainer/vbox/hbox_month_year"]
 margin_right = 132.0
-margin_bottom = 68.0
+margin_bottom = 80.0
 size_flags_horizontal = 3
 text = "<"
 
 [node name="button_prev_year" type="Button" parent="PanelContainer/vbox/hbox_month_year"]
 margin_left = 136.0
 margin_right = 268.0
-margin_bottom = 68.0
+margin_bottom = 80.0
 size_flags_horizontal = 3
 text = "<<"
 
 [node name="label_month_year" type="Label" parent="PanelContainer/vbox/hbox_month_year"]
 margin_left = 272.0
 margin_right = 536.0
-margin_bottom = 68.0
+margin_bottom = 80.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
 size_flags_stretch_ratio = 2.0
@@ -52,30 +61,30 @@ valign = 1
 [node name="button_next_year" type="Button" parent="PanelContainer/vbox/hbox_month_year"]
 margin_left = 540.0
 margin_right = 672.0
-margin_bottom = 68.0
+margin_bottom = 80.0
 size_flags_horizontal = 3
 text = ">>"
 
 [node name="button_next_month" type="Button" parent="PanelContainer/vbox/hbox_month_year"]
 margin_left = 676.0
 margin_right = 808.0
-margin_bottom = 68.0
+margin_bottom = 80.0
 size_flags_horizontal = 3
 text = ">"
 
 [node name="label_empty" type="Label" parent="PanelContainer/vbox"]
-margin_top = 72.0
+margin_top = 168.0
 margin_right = 808.0
-margin_bottom = 120.0
+margin_bottom = 228.0
 size_flags_vertical = 1
 text = "  "
 align = 1
 valign = 1
 
 [node name="hbox_label_days" type="GridContainer" parent="PanelContainer/vbox"]
-margin_top = 124.0
+margin_top = 232.0
 margin_right = 808.0
-margin_bottom = 172.0
+margin_bottom = 292.0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.1
 custom_constants/hseparation = 10
@@ -83,7 +92,7 @@ columns = 7
 
 [node name="label_sunday" type="Label" parent="PanelContainer/vbox/hbox_label_days"]
 margin_right = 106.0
-margin_bottom = 48.0
+margin_bottom = 60.0
 rect_min_size = Vector2( 30, 15 )
 size_flags_horizontal = 3
 text = "Sun"
@@ -92,7 +101,7 @@ align = 1
 [node name="label_monday" type="Label" parent="PanelContainer/vbox/hbox_label_days"]
 margin_left = 116.0
 margin_right = 222.0
-margin_bottom = 48.0
+margin_bottom = 60.0
 rect_min_size = Vector2( 30, 15 )
 size_flags_horizontal = 3
 text = "Mon"
@@ -101,7 +110,7 @@ align = 1
 [node name="label_thuesday" type="Label" parent="PanelContainer/vbox/hbox_label_days"]
 margin_left = 232.0
 margin_right = 338.0
-margin_bottom = 48.0
+margin_bottom = 60.0
 size_flags_horizontal = 3
 text = "Tue"
 align = 1
@@ -109,7 +118,7 @@ align = 1
 [node name="label_wednesday" type="Label" parent="PanelContainer/vbox/hbox_label_days"]
 margin_left = 348.0
 margin_right = 454.0
-margin_bottom = 48.0
+margin_bottom = 60.0
 rect_min_size = Vector2( 30, 15 )
 size_flags_horizontal = 3
 text = "Wed"
@@ -118,7 +127,7 @@ align = 1
 [node name="label_thursday" type="Label" parent="PanelContainer/vbox/hbox_label_days"]
 margin_left = 464.0
 margin_right = 570.0
-margin_bottom = 48.0
+margin_bottom = 60.0
 rect_min_size = Vector2( 30, 15 )
 size_flags_horizontal = 3
 text = "Thu"
@@ -127,7 +136,7 @@ align = 1
 [node name="label_friday" type="Label" parent="PanelContainer/vbox/hbox_label_days"]
 margin_left = 580.0
 margin_right = 686.0
-margin_bottom = 48.0
+margin_bottom = 60.0
 rect_min_size = Vector2( 30, 15 )
 size_flags_horizontal = 3
 text = "Fri"
@@ -136,15 +145,15 @@ align = 1
 [node name="label_saturday" type="Label" parent="PanelContainer/vbox/hbox_label_days"]
 margin_left = 696.0
 margin_right = 802.0
-margin_bottom = 48.0
+margin_bottom = 60.0
 size_flags_horizontal = 3
 text = "Sat"
 align = 1
 
 [node name="hbox_days" type="GridContainer" parent="PanelContainer/vbox"]
-margin_top = 176.0
+margin_top = 296.0
 margin_right = 808.0
-margin_bottom = 619.0
+margin_bottom = 811.0
 size_flags_vertical = 3
 custom_constants/vseparation = 7
 custom_constants/hseparation = 10
@@ -152,7 +161,7 @@ columns = 7
 
 [node name="btn_0" type="Button" parent="PanelContainer/vbox/hbox_days"]
 margin_right = 106.0
-margin_bottom = 68.0
+margin_bottom = 80.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
@@ -160,7 +169,7 @@ disabled = true
 [node name="btn_1" type="Button" parent="PanelContainer/vbox/hbox_days"]
 margin_left = 116.0
 margin_right = 222.0
-margin_bottom = 68.0
+margin_bottom = 80.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
@@ -168,7 +177,7 @@ disabled = true
 [node name="btn_2" type="Button" parent="PanelContainer/vbox/hbox_days"]
 margin_left = 232.0
 margin_right = 338.0
-margin_bottom = 68.0
+margin_bottom = 80.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
@@ -176,7 +185,7 @@ disabled = true
 [node name="btn_3" type="Button" parent="PanelContainer/vbox/hbox_days"]
 margin_left = 348.0
 margin_right = 454.0
-margin_bottom = 68.0
+margin_bottom = 80.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
@@ -184,7 +193,7 @@ disabled = true
 [node name="btn_4" type="Button" parent="PanelContainer/vbox/hbox_days"]
 margin_left = 464.0
 margin_right = 570.0
-margin_bottom = 68.0
+margin_bottom = 80.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
@@ -192,7 +201,7 @@ disabled = true
 [node name="btn_5" type="Button" parent="PanelContainer/vbox/hbox_days"]
 margin_left = 580.0
 margin_right = 686.0
-margin_bottom = 68.0
+margin_bottom = 80.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
@@ -200,325 +209,325 @@ disabled = true
 [node name="btn_6" type="Button" parent="PanelContainer/vbox/hbox_days"]
 margin_left = 696.0
 margin_right = 802.0
-margin_bottom = 68.0
+margin_bottom = 80.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
 
 [node name="btn_7" type="Button" parent="PanelContainer/vbox/hbox_days"]
-margin_top = 75.0
+margin_top = 87.0
 margin_right = 106.0
-margin_bottom = 143.0
+margin_bottom = 167.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
 
 [node name="btn_8" type="Button" parent="PanelContainer/vbox/hbox_days"]
 margin_left = 116.0
-margin_top = 75.0
+margin_top = 87.0
 margin_right = 222.0
-margin_bottom = 143.0
+margin_bottom = 167.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
 
 [node name="btn_9" type="Button" parent="PanelContainer/vbox/hbox_days"]
 margin_left = 232.0
-margin_top = 75.0
+margin_top = 87.0
 margin_right = 338.0
-margin_bottom = 143.0
+margin_bottom = 167.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
 
 [node name="btn_10" type="Button" parent="PanelContainer/vbox/hbox_days"]
 margin_left = 348.0
-margin_top = 75.0
+margin_top = 87.0
 margin_right = 454.0
-margin_bottom = 143.0
+margin_bottom = 167.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
 
 [node name="btn_11" type="Button" parent="PanelContainer/vbox/hbox_days"]
 margin_left = 464.0
-margin_top = 75.0
+margin_top = 87.0
 margin_right = 570.0
-margin_bottom = 143.0
+margin_bottom = 167.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
 
 [node name="btn_12" type="Button" parent="PanelContainer/vbox/hbox_days"]
 margin_left = 580.0
-margin_top = 75.0
+margin_top = 87.0
 margin_right = 686.0
-margin_bottom = 143.0
+margin_bottom = 167.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
 
 [node name="btn_13" type="Button" parent="PanelContainer/vbox/hbox_days"]
 margin_left = 696.0
-margin_top = 75.0
+margin_top = 87.0
 margin_right = 802.0
-margin_bottom = 143.0
+margin_bottom = 167.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
 
 [node name="btn_14" type="Button" parent="PanelContainer/vbox/hbox_days"]
-margin_top = 150.0
+margin_top = 174.0
 margin_right = 106.0
-margin_bottom = 218.0
+margin_bottom = 254.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
 
 [node name="btn_15" type="Button" parent="PanelContainer/vbox/hbox_days"]
 margin_left = 116.0
-margin_top = 150.0
+margin_top = 174.0
 margin_right = 222.0
-margin_bottom = 218.0
+margin_bottom = 254.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
 
 [node name="btn_16" type="Button" parent="PanelContainer/vbox/hbox_days"]
 margin_left = 232.0
-margin_top = 150.0
+margin_top = 174.0
 margin_right = 338.0
-margin_bottom = 218.0
+margin_bottom = 254.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
 
 [node name="btn_17" type="Button" parent="PanelContainer/vbox/hbox_days"]
 margin_left = 348.0
-margin_top = 150.0
+margin_top = 174.0
 margin_right = 454.0
-margin_bottom = 218.0
+margin_bottom = 254.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
 
 [node name="btn_18" type="Button" parent="PanelContainer/vbox/hbox_days"]
 margin_left = 464.0
-margin_top = 150.0
+margin_top = 174.0
 margin_right = 570.0
-margin_bottom = 218.0
+margin_bottom = 254.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
 
 [node name="btn_19" type="Button" parent="PanelContainer/vbox/hbox_days"]
 margin_left = 580.0
-margin_top = 150.0
+margin_top = 174.0
 margin_right = 686.0
-margin_bottom = 218.0
+margin_bottom = 254.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
 
 [node name="btn_20" type="Button" parent="PanelContainer/vbox/hbox_days"]
 margin_left = 696.0
-margin_top = 150.0
+margin_top = 174.0
 margin_right = 802.0
-margin_bottom = 218.0
+margin_bottom = 254.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
 
 [node name="btn_21" type="Button" parent="PanelContainer/vbox/hbox_days"]
-margin_top = 225.0
+margin_top = 261.0
 margin_right = 106.0
-margin_bottom = 293.0
+margin_bottom = 341.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
 
 [node name="btn_22" type="Button" parent="PanelContainer/vbox/hbox_days"]
 margin_left = 116.0
-margin_top = 225.0
+margin_top = 261.0
 margin_right = 222.0
-margin_bottom = 293.0
+margin_bottom = 341.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
 
 [node name="btn_23" type="Button" parent="PanelContainer/vbox/hbox_days"]
 margin_left = 232.0
-margin_top = 225.0
+margin_top = 261.0
 margin_right = 338.0
-margin_bottom = 293.0
+margin_bottom = 341.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
 
 [node name="btn_24" type="Button" parent="PanelContainer/vbox/hbox_days"]
 margin_left = 348.0
-margin_top = 225.0
+margin_top = 261.0
 margin_right = 454.0
-margin_bottom = 293.0
+margin_bottom = 341.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
 
 [node name="btn_25" type="Button" parent="PanelContainer/vbox/hbox_days"]
 margin_left = 464.0
-margin_top = 225.0
+margin_top = 261.0
 margin_right = 570.0
-margin_bottom = 293.0
+margin_bottom = 341.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
 
 [node name="btn_26" type="Button" parent="PanelContainer/vbox/hbox_days"]
 margin_left = 580.0
-margin_top = 225.0
+margin_top = 261.0
 margin_right = 686.0
-margin_bottom = 293.0
+margin_bottom = 341.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
 
 [node name="btn_27" type="Button" parent="PanelContainer/vbox/hbox_days"]
 margin_left = 696.0
-margin_top = 225.0
+margin_top = 261.0
 margin_right = 802.0
-margin_bottom = 293.0
+margin_bottom = 341.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
 
 [node name="btn_28" type="Button" parent="PanelContainer/vbox/hbox_days"]
-margin_top = 300.0
+margin_top = 348.0
 margin_right = 106.0
-margin_bottom = 368.0
+margin_bottom = 428.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
 
 [node name="btn_29" type="Button" parent="PanelContainer/vbox/hbox_days"]
 margin_left = 116.0
-margin_top = 300.0
+margin_top = 348.0
 margin_right = 222.0
-margin_bottom = 368.0
+margin_bottom = 428.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
 
 [node name="btn_30" type="Button" parent="PanelContainer/vbox/hbox_days"]
 margin_left = 232.0
-margin_top = 300.0
+margin_top = 348.0
 margin_right = 338.0
-margin_bottom = 368.0
+margin_bottom = 428.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
 
 [node name="btn_31" type="Button" parent="PanelContainer/vbox/hbox_days"]
 margin_left = 348.0
-margin_top = 300.0
+margin_top = 348.0
 margin_right = 454.0
-margin_bottom = 368.0
+margin_bottom = 428.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
 
 [node name="btn_32" type="Button" parent="PanelContainer/vbox/hbox_days"]
 margin_left = 464.0
-margin_top = 300.0
+margin_top = 348.0
 margin_right = 570.0
-margin_bottom = 368.0
+margin_bottom = 428.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
 
 [node name="btn_33" type="Button" parent="PanelContainer/vbox/hbox_days"]
 margin_left = 580.0
-margin_top = 300.0
+margin_top = 348.0
 margin_right = 686.0
-margin_bottom = 368.0
+margin_bottom = 428.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
 
 [node name="btn_34" type="Button" parent="PanelContainer/vbox/hbox_days"]
 margin_left = 696.0
-margin_top = 300.0
+margin_top = 348.0
 margin_right = 802.0
-margin_bottom = 368.0
+margin_bottom = 428.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
 
 [node name="btn_35" type="Button" parent="PanelContainer/vbox/hbox_days"]
-margin_top = 375.0
+margin_top = 435.0
 margin_right = 106.0
-margin_bottom = 443.0
+margin_bottom = 515.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
 
 [node name="btn_36" type="Button" parent="PanelContainer/vbox/hbox_days"]
 margin_left = 116.0
-margin_top = 375.0
+margin_top = 435.0
 margin_right = 222.0
-margin_bottom = 443.0
+margin_bottom = 515.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
 
 [node name="btn_37" type="Button" parent="PanelContainer/vbox/hbox_days"]
 margin_left = 232.0
-margin_top = 375.0
+margin_top = 435.0
 margin_right = 338.0
-margin_bottom = 443.0
+margin_bottom = 515.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
 
 [node name="btn_38" type="Button" parent="PanelContainer/vbox/hbox_days"]
 margin_left = 348.0
-margin_top = 375.0
+margin_top = 435.0
 margin_right = 454.0
-margin_bottom = 443.0
+margin_bottom = 515.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
 
 [node name="btn_39" type="Button" parent="PanelContainer/vbox/hbox_days"]
 margin_left = 464.0
-margin_top = 375.0
+margin_top = 435.0
 margin_right = 570.0
-margin_bottom = 443.0
+margin_bottom = 515.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
 
 [node name="btn_40" type="Button" parent="PanelContainer/vbox/hbox_days"]
 margin_left = 580.0
-margin_top = 375.0
+margin_top = 435.0
 margin_right = 686.0
-margin_bottom = 443.0
+margin_bottom = 515.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
 
 [node name="btn_41" type="Button" parent="PanelContainer/vbox/hbox_days"]
 margin_left = 696.0
-margin_top = 375.0
+margin_top = 435.0
 margin_right = 802.0
-margin_bottom = 443.0
+margin_bottom = 515.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 disabled = true
 
 [node name="label_empty3" type="Label" parent="PanelContainer/vbox"]
-margin_top = 623.0
+margin_top = 815.0
 margin_right = 808.0
-margin_bottom = 682.0
+margin_bottom = 875.0
 size_flags_vertical = 3
 text = "  "
 align = 1

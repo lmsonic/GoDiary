@@ -11,8 +11,6 @@ func _process(delta):
 		old_height = input.rect_position.y
 	
 	var kb_height := OS.get_virtual_keyboard_height()
-	print(kb_height)
-	print(old_height)
 
 
 	if kb_height > 0:

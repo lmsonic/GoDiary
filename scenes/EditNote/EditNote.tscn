@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://scenes/EditNote/EditNote.gd" type="Script" id=1]
 [ext_resource path="res://assets/emojis/moods/4content.png" type="Texture" id=2]
@@ -23,14 +23,6 @@
 
 [sub_resource type="DynamicFont" id=1]
 size = 80
-font_data = ExtResource( 13 )
-
-[sub_resource type="DynamicFont" id=3]
-size = 60
-font_data = ExtResource( 13 )
-
-[sub_resource type="DynamicFont" id=4]
-size = 60
 font_data = ExtResource( 13 )
 
 [sub_resource type="DynamicFont" id=5]
@@ -72,29 +64,28 @@ margin_bottom = 403.0
 [node name="Title2" type="Label" parent="VBoxContainer"]
 margin_top = 407.0
 margin_right = 1070.0
-margin_bottom = 478.0
+margin_bottom = 467.0
 size_flags_vertical = 1
 size_flags_stretch_ratio = 0.3
-custom_fonts/font = SubResource( 3 )
 text = "Date"
 align = 1
 valign = 1
 
 [node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
-margin_top = 482.0
+margin_top = 471.0
 margin_right = 1070.0
-margin_bottom = 492.0
+margin_bottom = 481.0
 
 [node name="DateContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 496.0
+margin_top = 485.0
 margin_right = 1070.0
-margin_bottom = 721.0
+margin_bottom = 716.0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.46
 
 [node name="CalendarButton" type="TextureButton" parent="VBoxContainer/DateContainer"]
 margin_right = 362.0
-margin_bottom = 225.0
+margin_bottom = 231.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.34
@@ -108,40 +99,41 @@ script = ExtResource( 12 )
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/DateContainer"]
 margin_left = 366.0
 margin_right = 1070.0
-margin_bottom = 225.0
+margin_bottom = 231.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.66
 
 [node name="DateLabel" type="Label" parent="VBoxContainer/DateContainer/VBoxContainer"]
 margin_right = 704.0
-margin_bottom = 130.0
+margin_bottom = 113.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = SubResource( 4 )
 text = "21-11-2021"
 align = 1
 valign = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/DateContainer/VBoxContainer"]
-margin_top = 134.0
+margin_top = 117.0
 margin_right = 704.0
-margin_bottom = 225.0
+margin_bottom = 231.0
 size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
 
 [node name="HourLabel" type="LineEdit" parent="VBoxContainer/DateContainer/VBoxContainer/HBoxContainer"]
-margin_right = 200.0
-margin_bottom = 91.0
+margin_left = 176.0
+margin_right = 340.0
+margin_bottom = 114.0
 size_flags_vertical = 3
-custom_fonts/font = SubResource( 5 )
 text = "10"
 align = 1
 max_length = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/DateContainer/VBoxContainer/HBoxContainer"]
-margin_left = 204.0
-margin_right = 219.0
-margin_bottom = 91.0
+margin_left = 344.0
+margin_right = 359.0
+margin_bottom = 114.0
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 5 )
 text = ":"
@@ -149,44 +141,33 @@ align = 1
 valign = 1
 
 [node name="MinuteLabel" type="LineEdit" parent="VBoxContainer/DateContainer/VBoxContainer/HBoxContainer"]
-margin_left = 223.0
-margin_right = 423.0
-margin_bottom = 91.0
+margin_left = 363.0
+margin_right = 527.0
+margin_bottom = 114.0
 size_flags_vertical = 3
-custom_fonts/font = SubResource( 5 )
 text = "00"
 align = 1
 max_length = 2
 context_menu_enabled = false
 shortcut_keys_enabled = false
 
-[node name="Button" type="Button" parent="VBoxContainer/DateContainer/VBoxContainer/HBoxContainer"]
-margin_left = 427.0
-margin_right = 704.0
-margin_bottom = 91.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_fonts/font = SubResource( 5 )
-text = "OK"
-
 [node name="HSeparator3" type="HSeparator" parent="VBoxContainer"]
-margin_top = 725.0
+margin_top = 720.0
 margin_right = 1070.0
-margin_bottom = 735.0
+margin_bottom = 730.0
 
 [node name="Label" type="Label" parent="VBoxContainer"]
-margin_top = 739.0
+margin_top = 734.0
 margin_right = 1070.0
-margin_bottom = 810.0
+margin_bottom = 794.0
 size_flags_vertical = 1
-custom_fonts/font = SubResource( 3 )
 text = "Mood"
 align = 1
 
 [node name="ButtonsContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 814.0
+margin_top = 798.0
 margin_right = 1070.0
-margin_bottom = 1014.0
+margin_bottom = 998.0
 alignment = 1
 
 [node name="SadButton" type="TextureButton" parent="VBoxContainer/ButtonsContainer"]
@@ -248,35 +229,34 @@ expand = true
 stretch_mode = 5
 
 [node name="HSeparator4" type="HSeparator" parent="VBoxContainer"]
-margin_top = 1018.0
+margin_top = 1002.0
 margin_right = 1070.0
-margin_bottom = 1028.0
+margin_bottom = 1012.0
 
 [node name="Text" type="Label" parent="VBoxContainer"]
-margin_top = 1032.0
+margin_top = 1016.0
 margin_right = 1070.0
-margin_bottom = 1103.0
+margin_bottom = 1076.0
 size_flags_vertical = 1
-custom_fonts/font = SubResource( 3 )
 text = "Text"
 align = 1
 
 [node name="TextEdit" type="TextEdit" parent="VBoxContainer"]
-margin_top = 1107.0
+margin_top = 1080.0
 margin_right = 1070.0
-margin_bottom = 1598.0
+margin_bottom = 1584.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="HSeparator5" type="HSeparator" parent="VBoxContainer"]
-margin_top = 1602.0
+margin_top = 1588.0
 margin_right = 1070.0
-margin_bottom = 1612.0
+margin_bottom = 1598.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 1616.0
+margin_top = 1602.0
 margin_right = 1070.0
-margin_bottom = 1716.0
+margin_bottom = 1702.0
 alignment = 2
 
 [node name="Camera" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
@@ -284,6 +264,7 @@ margin_left = 866.0
 margin_right = 966.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 100, 100 )
+toggle_mode = true
 texture_normal = ExtResource( 20 )
 texture_pressed = ExtResource( 18 )
 expand = true
@@ -293,14 +274,15 @@ margin_left = 970.0
 margin_right = 1070.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 100, 100 )
+toggle_mode = true
 texture_normal = ExtResource( 17 )
 texture_pressed = ExtResource( 19 )
 expand = true
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 1720.0
+margin_top = 1706.0
 margin_right = 1070.0
-margin_bottom = 1835.0
+margin_bottom = 1821.0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.18
 
@@ -310,7 +292,7 @@ margin_bottom = 115.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
 
-[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer2"]
+[node name="SaveButton" type="Button" parent="VBoxContainer/HBoxContainer2"]
 margin_left = 358.0
 margin_right = 712.0
 margin_bottom = 115.0
@@ -327,7 +309,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Label3" type="Label" parent="VBoxContainer"]
-margin_top = 1839.0
+margin_top = 1825.0
 margin_right = 1070.0
 margin_bottom = 2330.0
 size_flags_horizontal = 3
@@ -336,11 +318,15 @@ size_flags_vertical = 3
 [node name="Tween" type="Tween" parent="."]
 
 [connection signal="date_selected" from="VBoxContainer/DateContainer/CalendarButton" to="." method="_on_CalendarButton_date_selected"]
+[connection signal="focus_exited" from="VBoxContainer/DateContainer/VBoxContainer/HBoxContainer/HourLabel" to="." method="_on_HourLabel_focus_exited"]
 [connection signal="text_changed" from="VBoxContainer/DateContainer/VBoxContainer/HBoxContainer/HourLabel" to="." method="_on_HourLabel_text_changed"]
+[connection signal="focus_exited" from="VBoxContainer/DateContainer/VBoxContainer/HBoxContainer/MinuteLabel" to="." method="_on_MinuteLabel_focus_exited"]
 [connection signal="text_changed" from="VBoxContainer/DateContainer/VBoxContainer/HBoxContainer/MinuteLabel" to="." method="_on_MinuteLabel_text_changed"]
-[connection signal="pressed" from="VBoxContainer/DateContainer/VBoxContainer/HBoxContainer/Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ButtonsContainer/SadButton" to="." method="_on_SadButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/ButtonsContainer/DissatisfiedButton" to="." method="_on_DissatisfiedButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/ButtonsContainer/MehButton" to="." method="_on_MehButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/ButtonsContainer/ContentButton" to="." method="_on_ContentButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/ButtonsContainer/HappyButton" to="." method="_on_HappyButton_pressed"]
+[connection signal="toggled" from="VBoxContainer/HBoxContainer/Camera" to="." method="_on_Camera_toggled"]
+[connection signal="toggled" from="VBoxContainer/HBoxContainer/Microphone" to="." method="_on_Microphone_toggled"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/SaveButton" to="." method="_on_SaveButton_pressed"]
