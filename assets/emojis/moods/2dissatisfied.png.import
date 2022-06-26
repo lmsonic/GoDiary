@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/grin-stars.png-74e964ea6e54b5c49d41eb5c9783288f.stex"
+path="res://.import/2dissatisfied.png-26e78d4800c8f7803f464a107fead865.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/emojis/grin-stars.png"
-dest_files=[ "res://.import/grin-stars.png-74e964ea6e54b5c49d41eb5c9783288f.stex" ]
+source_file="res://assets/emojis/moods/2dissatisfied.png"
+dest_files=[ "res://.import/2dissatisfied.png-26e78d4800c8f7803f464a107fead865.stex" ]
 
 [params]
 

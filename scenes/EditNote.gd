@@ -6,7 +6,10 @@ onready var minute_label:=$VBoxContainer/DateContainer/VBoxContainer/HBoxContain
 
 onready var hour_minute_container:=$VBoxContainer/DateContainer/VBoxContainer/HBoxContainer
 
+onready var buttons_container:=$VBoxContainer/ButtonsContainer
 onready var tween:Tween=$Tween
+
+
 var note:=NoteResource.new()
 
 func _ready() -> void:
@@ -42,11 +45,7 @@ func tween_to(color:Color):
 	tween.interpolate_property(hour_minute_container,"modulate",Color.white,color,0.25)
 	tween.interpolate_property(hour_minute_container,"modulate",color,Color.white,0.25)
 	tween.start()
-		
-
 	
-
-
 func _on_HourLabel_text_changed(new_text: String) -> void:
 	if not new_text.is_valid_integer():
 		hour_label.text="00"
@@ -63,3 +62,31 @@ func _on_MinuteLabel_text_changed(new_text: String) -> void:
 		minute_label.text="00"
 	elif int(new_text) > 60:
 		minute_label.text="60"
+		
+
+func select_button(mood):
+	var mood_buttons:=buttons_container.get_children()
+	for button in mood_buttons:
+		button.pressed=false
+	
+	var button_selected:TextureButton=mood_buttons[mood]
+	button_selected.pressed = true
+	note.mood = mood
+	
+
+func _on_SadButton_pressed() -> void:
+	select_button(NoteResource.Mood.Sad)
+	
+func _on_DissatisfiedButton_pressed() -> void:
+	select_button(NoteResource.Mood.Dissatisfied)
+	
+func _on_MehButton_pressed() -> void:
+	select_button(NoteResource.Mood.Meh)
+
+
+func _on_ContentButton_pressed() -> void:
+	select_button(NoteResource.Mood.Content)
+
+
+func _on_HappyButton_pressed() -> void:
+	select_button(NoteResource.Mood.Happy)

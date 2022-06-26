@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/dissatisfied.png-e81c416f38898b4ca6e5592054a6e20a.stex"
+path="res://.import/4contentwhite.png-4707a38e6b13cfb6040ff8d3fc43ed91.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/emojis/dissatisfied.png"
-dest_files=[ "res://.import/dissatisfied.png-e81c416f38898b4ca6e5592054a6e20a.stex" ]
+source_file="res://assets/emojis/moods/4contentwhite.png"
+dest_files=[ "res://.import/4contentwhite.png-4707a38e6b13cfb6040ff8d3fc43ed91.stex" ]
 
 [params]
 
@@ -27,7 +27,7 @@ flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
-process/invert_color=false
+process/invert_color=true
 process/normal_map_invert_y=false
 stream=false
 size_limit=0
