@@ -27,46 +27,58 @@ func _on_TimeFrame_item_selected(index: int) -> void:
 	clear_bar_graph()
 	refresh_bar_graph()
 
+func draw_week_notes():
+	var week_notes:=NoteDatabase.get_last_week_notes()
+	
+	var week_dict:=[]
+	for i in range(7):
+		week_dict.append([])
+		
+	for note in week_notes:
+		var date:= note.date_time as DateTime
+		var week_day:=Calendar.get_weekday(date.day,date.month,date.year)
+		week_dict[week_day].append(note.mood)
+	
+	draw_mood_bars(week_dict)
+	
+func draw_month_notes():
+	var month_notes:=NoteDatabase.get_last_month_notes()
+	
+	var now:=DateTime.new()
+	var month_dict:=[]
+	for i in range(Calendar.get_days_in_month(now.month,now.year)):
+		month_dict.append([])
+		
+	for note in month_notes:
+		month_dict[note.date_time.day - 1].append(note.mood)
+	
+	draw_mood_bars(month_dict)
+	
+func draw_year_notes():
+	var year_notes:=NoteDatabase.get_last_year_notes()
+	
+	var year_dict:=[]
+	for i in range(12):
+		year_dict.append([])
+		
+	for note in year_notes:
+		year_dict[note.date_time.month - 1].append(note.mood)
+	
+	draw_mood_bars(year_dict)
+		
+func draw_mood_bars(mood_dict:Array):
+	for i in mood_dict.size():
+		var bar:Bar = bar_scene.instance()
+		bar.value = Utils.average_moods(mood_dict[i])
+		bar_container.add_child(bar)
+
+
 func refresh_bar_graph() ->void:
 	match time_frame.selected:
 		Week:
-			var week_notes:=NoteDatabase.get_last_week_notes()
-			var week_dict:=[]
-			for i in range(7):
-				week_dict.append([])
-			for note in week_notes:
-				var date:= note.date_time as DateTime
-				var week_day:=Calendar.get_weekday(date.day,date.month,date.year)
-				week_dict[week_day].append(note.mood)
-			
-			for i in week_dict.size():
-				var bar:Bar = bar_scene.instance()
-				bar.value = Utils.average_moods(week_dict[i])
-				bar_container.add_child(bar)
-			
+			draw_week_notes()
 		Month:
-			var month_notes:=NoteDatabase.get_last_month_notes()
-			var now:=DateTime.new()
-			var month_dict:=[]
-			for i in range(Calendar.get_days_in_month(now.month,now.year)):
-				month_dict.append([])
-			for note in month_notes:
-				month_dict[note.date_time.day - 1].append(note.mood)
-			
-			for i in month_dict.size():
-				var bar:Bar = bar_scene.instance()
-				bar.value = Utils.average_moods(month_dict[i])
-				bar_container.add_child(bar)
+			draw_month_notes()
 		Year:
-			var year_notes:=NoteDatabase.get_last_year_notes()
-			var now:=DateTime.new()
-			var year_dict:=[]
-			for i in range(Calendar.get_days_in_year(now.year)):
-				year_dict.append([])
-			for note in year_notes:
-				year_dict[note.date_time.day - 1].append(note.mood)
+			draw_year_notes()
 			
-			for i in year_dict.size():
-				var bar:Bar = bar_scene.instance()
-				bar.value = Utils.average_moods(year_dict[i])
-				bar_container.add_child(bar)
