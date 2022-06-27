@@ -6,19 +6,30 @@ var notes_database:=[]
 
 func _ready() -> void:
 	notes_database.append_array(random_last_year_notes())
-
 	
-static func generate_random_notes_between(start_date:DateTime, end_date:DateTime):
+static func random_note(date:DateTime,text:String) -> NoteResource:
+	return NoteResource.new(
+			Utils.randi_range(0,NoteResource.Mood.size()),
+			date,
+			text)
+
+static func generate_random_notes_in_day(day:DateTime,min_notes:int,max_notes:int) ->Array:
+	var notes:=[]
+	var rand := Utils.randi_range(min_notes,max_notes)
+	for i in range(rand):
+		var note:= random_note(day,"Random Note")
+	return []
+	
+static func generate_random_notes_between(start_date:DateTime, end_date:DateTime) -> Array:
 	if Utils.compare_dates(start_date,end_date) < 0:
 		printerr("End date is before start date")
-		return
+		return []
 	
 	var notes:=[]
 	var date_iter:DateTime= start_date.duplicate()
 	
 	while Utils.compare_dates(end_date, date_iter) < 0:
-		var note:= NoteResource.new(randi() % NoteResource.Mood.size(),\
-			date_iter.duplicate(),"Texto")
+		var note:= random_note(date_iter.duplicate(),"Random Note")
 		notes.append(note)
 		date_iter.next_day()
 	

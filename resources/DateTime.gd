@@ -19,8 +19,8 @@ func get_hour_minute_string() -> String:
 func _to_string() -> String:
 	return get_date_string() + " " + get_hour_minute_string()
 
-func _init(day:int=Calendar.day(),month=Calendar.month(),year=Calendar.year(),\
-			hour=Calendar.hour(),minute=Calendar.minute()) -> void:
+func _init(day:int=Calendar.day(),month:int=Calendar.month(),year:int=Calendar.year(),\
+			hour:int=Calendar.hour(),minute:int=Calendar.minute()) -> void:
 	self.day = day
 	self.month = month
 	self.year = year
