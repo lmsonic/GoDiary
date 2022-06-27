@@ -18,9 +18,11 @@ static func generate_random_notes_in_day(day:DateTime,min_notes:int,max_notes:in
 	var rand := Utils.randi_range(min_notes,max_notes)
 	for i in range(rand):
 		var note:= random_note(day,"Random Note")
-	return []
+		notes.append(note)
+	return notes
 	
-static func generate_random_notes_between(start_date:DateTime, end_date:DateTime) -> Array:
+static func generate_random_notes_between(start_date:DateTime, end_date:DateTime,
+			min_notes:int,max_notes:int) -> Array:
 	if Utils.compare_dates(start_date,end_date) < 0:
 		printerr("End date is before start date")
 		return []
@@ -29,8 +31,8 @@ static func generate_random_notes_between(start_date:DateTime, end_date:DateTime
 	var date_iter:DateTime= start_date.duplicate()
 	
 	while Utils.compare_dates(end_date, date_iter) < 0:
-		var note:= random_note(date_iter.duplicate(),"Random Note")
-		notes.append(note)
+		var day_notes:= generate_random_notes_in_day(date_iter.duplicate(),min_notes,max_notes)
+		notes.append_array(day_notes)
 		date_iter.next_day()
 	
 	return notes
@@ -44,7 +46,7 @@ static func random_last_week_notes() -> Array:
 	var next_week:DateTime=last_week.duplicate()
 	next_week.move_day_relative(7)
 	
-	return generate_random_notes_between(last_week,next_week)
+	return generate_random_notes_between(last_week,next_week,0,3)
 		
 static func random_last_month_notes() -> Array:
 	var last_month_notes:=[]
@@ -55,7 +57,7 @@ static func random_last_month_notes() -> Array:
 	var next_month:DateTime=last_month.duplicate()
 	next_month.next_month()
 	
-	return generate_random_notes_between(last_month,next_month)
+	return generate_random_notes_between(last_month,next_month,0,3)
 	
 static func random_last_year_notes() -> Array:
 	var last_year_notes:=[]
@@ -66,7 +68,7 @@ static func random_last_year_notes() -> Array:
 	var next_year:DateTime=last_year.duplicate()
 	next_year.next_year()
 		
-	return generate_random_notes_between(last_year,next_year)
+	return generate_random_notes_between(last_year,next_year,0,3)
 	
 func get_notes_between(start_date:DateTime, end_date:DateTime) -> Array:
 	var notes:=[]
