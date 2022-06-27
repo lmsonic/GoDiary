@@ -10,6 +10,9 @@ enum Mood{
 	Happy
 }
 
+func _to_string() -> String:
+	return str(date_time) + " " + str(mood) + " " + str(text)
+ 
 func _init(mood=Mood.Meh,date_time:DateTime=DateTime.new(),\
 				text:String="", photo:Image=null, audio:AudioStream=null):
 	self.date_time = date_time

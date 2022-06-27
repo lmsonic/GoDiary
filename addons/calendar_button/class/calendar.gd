@@ -12,6 +12,7 @@ const WEEKDAY_NAME = [
 		"Sunday", "Monday", "Tuesday", "Wednesday", 
 		"Thursday", "Friday", "Saturday" ]
 
+
 static func get_days_in_month(month : int, year : int) -> int:
 	var number_of_days : int
 	if(month == Month.APR || month == Month.JUN || month == Month.SEP
