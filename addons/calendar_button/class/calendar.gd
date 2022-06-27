@@ -11,7 +11,16 @@ const MONTH_NAME = [
 const WEEKDAY_NAME = [ 
 		"Sunday", "Monday", "Tuesday", "Wednesday", 
 		"Thursday", "Friday", "Saturday" ]
+		
+static func get_days_in_year(year:int) -> int:
+	return 366 if is_leap_year(year) else 365
 
+static func is_leap_year(year:int) -> bool:
+	if year % 400 == 0: return true
+	elif year % 100 == 0: return false
+	elif year % 4 == 0: return true
+	else: return false
+	
 
 static func get_days_in_month(month : int, year : int) -> int:
 	var number_of_days : int

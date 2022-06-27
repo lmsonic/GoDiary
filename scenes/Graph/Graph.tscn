@@ -58,7 +58,7 @@ margin_right = 986.0
 margin_bottom = 837.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/separation = 20
+custom_constants/separation = 0
 
 [node name="Bar" parent="VBoxContainer/BarGraph/MarginContainer/BarContainer" instance=ExtResource( 2 )]
 anchor_right = 0.0

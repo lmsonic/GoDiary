@@ -45,6 +45,28 @@ func refresh_bar_graph() ->void:
 				bar_container.add_child(bar)
 			
 		Month:
-			pass
+			var month_notes:=NoteDatabase.get_last_month_notes()
+			var now:=DateTime.new()
+			var month_dict:=[]
+			for i in range(Calendar.get_days_in_month(now.month,now.year)):
+				month_dict.append([])
+			for note in month_notes:
+				month_dict[note.date_time.day - 1].append(note.mood)
+			
+			for i in month_dict.size():
+				var bar:Bar = bar_scene.instance()
+				bar.value = Utils.average_moods(month_dict[i])
+				bar_container.add_child(bar)
 		Year:
-			pass
+			var year_notes:=NoteDatabase.get_last_year_notes()
+			var now:=DateTime.new()
+			var year_dict:=[]
+			for i in range(Calendar.get_days_in_year(now.year)):
+				year_dict.append([])
+			for note in year_notes:
+				year_dict[note.date_time.day - 1].append(note.mood)
+			
+			for i in year_dict.size():
+				var bar:Bar = bar_scene.instance()
+				bar.value = Utils.average_moods(year_dict[i])
+				bar_container.add_child(bar)

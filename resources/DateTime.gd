@@ -28,13 +28,45 @@ func _init(day:int=Calendar.day(),month=Calendar.month(),year=Calendar.year(),\
 	self.minute = minute
 	
 func move_to_year_beginning():
-	month=0
-	day=0
+	month=1
+	day=1
 	hour=0
 	minute=0
+	
+func next_day():
+	day +=1
+	if day > Calendar.get_days_in_month(month,year):
+		day = 1
+		next_month()
+
+	
+func prev_day():
+	day -=1
+	if day < 1:
+		prev_month()
+		day = Calendar.get_days_in_month(month,year) 
+
+func next_month():
+	month +=1
+	if month > 12:
+		month = 1
+		next_year()
+	
+func prev_month():
+	month -=1
+	if month < 1:
+		month = 12
+		prev_year()
+	
+
+func next_year():
+	year +=1
+	
+func prev_year():
+	month -=1
 
 func move_to_month_beginning():
-	day=0
+	day=1
 	hour=0
 	minute=0
 
@@ -45,15 +77,10 @@ func move_to_week_beginning():
 	minute=0
 
 func move_day_relative(amount:int):
-	var days_in_month := Calendar.get_days_in_month(month,year)
-	if day + amount < 0:
-		var days_previous_month:= Calendar.get_days_in_month(month-1,year)
-		var remainder := (day + amount) % (days_previous_month+1)
-		month -=1
-		day = days_previous_month - remainder
-	elif day + amount > days_in_month:
-		var remainder := (day + amount) % (days_in_month+1)
-		month +=1
-		day = remainder + 1
-	else:
-		day += amount
+	if amount > 0:
+		for i in amount:
+			next_day()
+	elif amount < 0:
+		for i in amount:
+			prev_day()
+
