@@ -85,7 +85,7 @@ func get_last_week_notes() -> Array:
 	last_week.move_to_week_beginning()
 	
 	var next_week:DateTime=last_week.duplicate()
-	next_week.move_day_relative(7)
+	next_week.move_day_relative(+7)
 	
 	return get_notes_between(last_week,next_week)
 	
