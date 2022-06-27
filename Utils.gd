@@ -12,3 +12,4 @@ static func average_colors(colors:Array) -> Color:
 		average.b += color.b * color.b 
 		
 	return average/colors.size()
+

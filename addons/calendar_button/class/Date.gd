@@ -1,13 +1,5 @@
 class_name Date
 
-const MONTH_NAME = [ 
-		"Jan", "Feb", "Mar", "Apr", 
-		"May", "Jun", "Jul", "Aug", 
-		"Sep", "Oct", "Nov", "Dec" ]
-
-const WEEKDAY_NAME = [ 
-		"Sunday", "Monday", "Tuesday", "Wednesday", 
-		"Thursday", "Friday", "Saturday" ]
 
 var day : int setget set_day
 var month : int setget set_month
@@ -37,21 +29,9 @@ func date(date_format = "DD-MM-YY") -> String:
 	return date_format
 	
 func get_date_string() -> String:
-	var weekday := get_weekday_name(day,month,year)
-	return weekday + " " + str(day) + " " + get_month_name(month) + " " + str(year)
+	var weekday := Calendar.get_weekday_name(day,month,year)
+	return weekday + " " + str(day) + " " + Calendar.get_month_name(month) + " " + str(year)
 	
-func get_weekday(day : int, month : int, year : int) -> int:
-	var t : Array = [0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4]
-	if(month < 3):
-		year -= 1
-	return (year + year/4 - year/100 + year/400 + t[month - 1] + day) % 7
-
-func get_weekday_name(day : int, month : int, year : int) -> String:
-	var day_num = get_weekday(day, month, year)
-	return WEEKDAY_NAME[day_num]
-	
-func get_month_name(month : int) -> String:
-	return MONTH_NAME[month - 1]
 
 func day() -> int:
 	return day

@@ -1,7 +1,0 @@
-[gd_scene format=2]
-
-[node name="BarGraph" type="Control"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 1073.0
-margin_bottom = 2333.0

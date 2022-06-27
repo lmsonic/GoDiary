@@ -2,7 +2,6 @@ extends Control
 
 signal date_selected(date_obj)
 
-var calendar := Calendar.new()
 var selected_date := Date.new()
 var window_restrictor := WindowRestrictor.new()
 
@@ -35,7 +34,7 @@ func set_month_year_title(title : String):
 	label_month_year_node.set_text(title)
 
 func refresh_data():
-	var title : String = str(calendar.get_month_name(selected_date.month()) + " " + str(selected_date.year()))
+	var title : String = str(Calendar.get_month_name(selected_date.month()) + " " + str(selected_date.year()))
 	set_month_year_title(title)
 	calendar_buttons.update_calendar_buttons(selected_date)
 
