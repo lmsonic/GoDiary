@@ -17,7 +17,7 @@ func _ready() -> void:
 	get_tree().set_quit_on_go_back(true)
 	windows = windows_container.get_children()
 	move_window(home)
-	windows_container.rect_size.x = rect_size.x * windows.size()
+	reset_window_container()
 
 func tween_window( target_x:float, duration:float):
 	tween.interpolate_property(windows_container, "rect_position:x",
@@ -64,3 +64,5 @@ func _on_TasksButton_pressed() -> void:
 
 func reset_window_container() -> void:
 	windows_container.rect_size.x = rect_size.x * windows.size()
+	windows_container.rect_size.y = rect_size.y
+	windows_container.rect_position.x = - current_window_index * rect_size.x

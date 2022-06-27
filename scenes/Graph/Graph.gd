@@ -54,6 +54,7 @@ func draw_month_notes():
 	
 	var last_month:=DateTime.new()
 	last_month.move_to_month_beginning()
+	last_month.next_month()
 	
 	var next_month:DateTime=last_month.duplicate()
 	next_month.next_month()
