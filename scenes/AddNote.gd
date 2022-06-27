@@ -19,10 +19,13 @@ var note:NoteResource = NoteResource.new()
 func _ready() -> void:
 	get_tree().set_quit_on_go_back(false)
 	
-	if CalendarSingleton.selected_date != null:
-		note.date_time.day = CalendarSingleton.selected_date.day
-		note.date_time.month = CalendarSingleton.selected_date.month
-		note.date_time.year = CalendarSingleton.selected_date.year
+	if Globals.selected_note != null:
+		note = Globals.selected_note
+	elif Globals.selected_date != null:
+		note.date_time.day = Globals.selected_date.day
+		note.date_time.month = Globals.selected_date.month
+		note.date_time.year = Globals.selected_date.year
+	
 		
 	
 	refresh_date()
@@ -36,7 +39,9 @@ func _ready() -> void:
 
 func _notification(what):
 	if what == MainLoop.NOTIFICATION_WM_GO_BACK_REQUEST:
-		if CalendarSingleton.selected_date == null:
+		if Globals.selected_note:
+			Globals.selected_note=null
+		if Globals.selected_date == null:
 			get_tree().change_scene("res://scenes/Main/Main.tscn")
 		else:
 			get_tree().change_scene("res://scenes/Calendar/Day.tscn")
@@ -145,3 +150,11 @@ func _on_Microphone_toggled(button_pressed: bool) -> void:
 		
 	else:
 		note.audio = null
+
+
+func _on_DeleteButton_pressed() -> void:
+	NoteDatabase.delete_note(note)
+	if Globals.selected_date == null:
+		get_tree().change_scene("res://scenes/Main/Main.tscn")
+	else:
+		get_tree().change_scene("res://scenes/Calendar/Day.tscn")

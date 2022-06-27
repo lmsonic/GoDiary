@@ -25,3 +25,8 @@ func _ready() -> void:
 	if note.audio == null: 
 		microphone.hide()
 	
+
+
+func _on_Edit_pressed() -> void:
+	Globals.selected_note = note
+	get_tree().change_scene("res://scenes/EditNote.tscn")

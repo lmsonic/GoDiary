@@ -8,7 +8,7 @@ var add_note:=preload("res://scenes/AddNote.tscn")
 var notes_resources:Array=[]
 
 func _ready() -> void:
-	var selected_date:= CalendarSingleton.selected_date
+	var selected_date:= Globals.selected_date
 	if  selected_date == null:
 		get_tree().change_scene("res://scenes/Main/Main.tscn")
 		printerr("The date isn't selected")
@@ -25,7 +25,7 @@ func _ready() -> void:
 
 func _notification(what):
 	if what == MainLoop.NOTIFICATION_WM_GO_BACK_REQUEST:
-		CalendarSingleton.selected_date = null
+		Globals.selected_date = null
 		get_tree().change_scene("res://scenes/Main/Main.tscn")
 
 func _on_NewNoteButton_pressed() -> void:

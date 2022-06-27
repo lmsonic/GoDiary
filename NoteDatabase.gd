@@ -21,11 +21,15 @@ func get_notes_for_date(date:Date) -> Array:
 	for note in notes:
 		note = note as NoteResource
 		var date_time : DateTime = note.date_time
-		if CalendarSingleton.date_time_equal_date(date_time,date):
+		if Utils.date_time_equal_date(date_time,date):
 			day_notes.append(note)
 	return day_notes
 		
-
+func delete_note(note:NoteResource) -> void:
+	if notes_database.find(note) != -1:
+		notes_database.erase(note)
+	else:
+		printerr("Note not present in database")
 
 func add_note(note:NoteResource) ->void: 
 	notes_database.append(note)

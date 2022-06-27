@@ -107,3 +107,5 @@ expand = true
 margin_top = 638.0
 margin_right = 1080.0
 margin_bottom = 648.0
+
+[connection signal="pressed" from="HBoxContainer/Edit" to="." method="_on_Edit_pressed"]

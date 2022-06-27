@@ -11,7 +11,7 @@ var calendar_buttons : CalendarButtons
 var day_prefab:=preload("res://scenes/Calendar/Day.tscn")
 
 func _on_CalendarGUI_date_selected(date_obj) -> void:
-	CalendarSingleton.selected_date = date_obj
+	Globals.selected_date = date_obj
 	get_tree().change_scene_to(day_prefab)
 
 func _ready():

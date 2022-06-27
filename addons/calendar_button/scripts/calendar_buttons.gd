@@ -40,18 +40,11 @@ func update_calendar_buttons(var selected_date : Date):
 		var notes:=NoteDatabase.get_notes_for_date(date)
 		var colors:= get_colors_moods(notes)
 		if notes.size()>0:
-			btn_node.modulate = average_colors(colors)
+			btn_node.modulate = Utils.average_colors(colors)
 		else:
 			btn_node.modulate = Color.white
 
-func average_colors(colors:Array) -> Color:
-	var average:=Color(0,0,0,1)
-	for color in colors:
-		average.r += color.r * color.r
-		average.g += color.g * color.g
-		average.b += color.b * color.b 
-		
-	return average/colors.size()
+
 		
 func get_colors_moods(notes:Array) -> Array:
 	var colors:=[]
