@@ -46,50 +46,48 @@ static func random_last_year_notes() -> Array:
 		
 	return last_year_notes
 
+func get_notes_between(start_date:DateTime, end_date:DateTime) -> Array:
+	var notes:=[]
+	for note in notes_database:
+		if Utils.compare_dates(start_date, note.date_time) >= 0 \
+			and Utils.compare_dates(end_date, note.date_time) < 0:
+			notes.append(note)
+	return notes
 
 func get_last_week_notes() -> Array:
 	var last_week_notes:=[]
-	var now := DateTime.new()
-	var last_week:DateTime=now.duplicate()
-	last_week.move_to_week_beginning()
-	var next_week:DateTime= last_week.duplicate()
-	next_week.move_day_relative(7)
-
 	
-	for note in notes_database:
-		if Utils.compare_dates(last_week, note.date_time) >= 0 \
-			and Utils.compare_dates(next_week, note.date_time) < 0:
-			last_week_notes.append(note)
-	return last_week_notes
+	var last_week:DateTime=DateTime.new()
+	last_week.move_to_week_beginning()
+	
+	var next_week:DateTime=last_week.duplicate()
+	next_week.move_day_relative(7)
+	
+	return get_notes_between(last_week,next_week)
 	
 func get_last_month_notes() -> Array:
 	var last_month_notes:=[]
-	var now := DateTime.new()
-	var last_month:DateTime=now.duplicate()
+	
+	var last_month:DateTime=DateTime.new()
 	last_month.move_to_month_beginning()
+	
 	var next_month:DateTime=last_month.duplicate()
 	next_month.next_month()
 
+	return get_notes_between(last_month,next_month)
 	
-	for note in notes_database:
-		if Utils.compare_dates(last_month, note.date_time) >= 0 \
-				and Utils.compare_dates(next_month, note.date_time) < 0:
-			last_month_notes.append(note)
-	return last_month_notes
 	
 func get_last_year_notes() -> Array:
 	var last_year_notes:=[]
-	var now := DateTime.new()
-	var last_year:DateTime=now.duplicate()
+
+	var last_year:DateTime=DateTime.new()
 	last_year.move_to_year_beginning()
+	
 	var next_year:DateTime=last_year.duplicate()
 	next_year.next_year()
 	
-	for note in notes_database:
-		if Utils.compare_dates(last_year, note.date_time) >= 0 \
-			and Utils.compare_dates(next_year, note.date_time) < 0:
-			last_year_notes.append(note)
-	return last_year_notes
+	return get_notes_between(last_year,next_year)
+	
 
 func get_notes_for_date(date:Date) -> Array:
 	var notes:=load_notes()
