@@ -64,7 +64,7 @@ func _on_CalendarButton_date_selected(date_obj:Date) -> void:
 func _on_HourLabel_focus_exited() -> void:
 	if hour_label.text.is_valid_integer():
 		var hour:= int(hour_label.text)
-		if hour >= 0  and hour <= 24 :
+		if hour >= 0  and hour < 24 :
 			note.date_time.hour = hour
 			return
 			
@@ -75,7 +75,7 @@ func _on_HourLabel_focus_exited() -> void:
 func _on_MinuteLabel_focus_exited() -> void:
 	if minute_label.text.is_valid_integer():
 		var minute:= int(minute_label.text)
-		if minute >= 0  and minute <= 60 :
+		if minute >= 0  and minute < 60 :
 			note.date_time.minute = minute
 			return
 	
@@ -94,8 +94,8 @@ func _on_HourLabel_text_changed(new_text: String) -> void:
 		hour_label.text=""
 	elif int(new_text) < 0:
 		hour_label.text="00"
-	elif int(new_text) > 24:
-		hour_label.text="24"
+	elif int(new_text) >= 24:
+		hour_label.text="23"
 
 
 func _on_MinuteLabel_text_changed(new_text: String) -> void:
@@ -103,8 +103,8 @@ func _on_MinuteLabel_text_changed(new_text: String) -> void:
 		minute_label.text=""
 	elif int(new_text) < 0:
 		minute_label.text="00"
-	elif int(new_text) > 60:
-		minute_label.text="60"
+	elif int(new_text) >= 60:
+		minute_label.text="59"
 		
 
 func select_button(mood):

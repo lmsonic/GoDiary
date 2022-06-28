@@ -7,7 +7,7 @@ export(Calendar.Month) var month:int
 export(int,0,31) var day :int
 
 export(int,0,23) var hour :int
-export(int,0,60) var minute :int
+export(int,0,59) var minute :int
 
 func get_date_string() -> String:
 	var weekday := Calendar.get_weekday_name(day,month,year)
