@@ -62,12 +62,11 @@ anchor_bottom = 1.0
 margin_top = 67.0
 margin_bottom = -362.0
 
-[node name="BarContainer" type="HBoxContainer" parent="VBoxContainer/BarGraph/MarginContainer"]
+[node name="BarContainer" type="GridContainer" parent="VBoxContainer/BarGraph/MarginContainer"]
 margin_right = 1070.0
 margin_bottom = 1423.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-alignment = 1
 
 [node name="Bar" parent="VBoxContainer/BarGraph/MarginContainer/BarContainer" instance=ExtResource( 2 )]
 anchor_right = 0.0

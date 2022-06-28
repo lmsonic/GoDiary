@@ -1,7 +1,7 @@
 extends PanelContainer
 
 onready var time_frame:OptionButton=$VBoxContainer/TimeFrame
-onready var bar_container:=$VBoxContainer/BarGraph/MarginContainer/BarContainer
+onready var bar_container:GridContainer=$VBoxContainer/BarGraph/MarginContainer/BarContainer
 onready var period_label:=$VBoxContainer/PeriodLabel
 
 var bar_scene:=preload("res://scenes/Graph/Bar.tscn")
@@ -50,6 +50,7 @@ func draw_week_notes():
 		week_dict[week_day].append(note.mood)
 	
 	draw_mood_bars(week_dict,Calendar.WEEKDAY_NAME)
+	
 func draw_month_notes():
 	
 	var last_month:=DateTime.new()
@@ -96,6 +97,7 @@ func draw_year_notes():
 	draw_mood_bars(year_dict,Calendar.MONTH_NAME)
 		
 func draw_mood_bars(mood_dict:Array, string_array=null):
+	bar_container.columns = mood_dict.size()
 	for i in mood_dict.size():
 		var bar:Bar = bar_scene.instance()
 		bar_container.add_child(bar)
