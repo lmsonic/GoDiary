@@ -5,23 +5,25 @@ extends Node
 var notes_database:=[]
 
 func _ready() -> void:
-	notes_database.append_array(random_last_month_notes())
+	notes_database.append_array(random_last_year_notes())
 	sort_database()
 	print("sorted")
 
 
 	
 func find_first_index_for_date(date:DateTime) ->int:
-	return notes_database.bsearch_custom(date,self,"compare_notes")
+	var note:=NoteResource.new(date)
+	return notes_database.bsearch_custom(note,self,"compare_notes")
 	
 func find_last_index_for_date(date:DateTime) ->int:
-	return notes_database.bsearch_custom(date,self,"compare_notes",false)
+	var note:=NoteResource.new(date)
+	return notes_database.bsearch_custom(note,self,"compare_notes",false)
 	
 func sort_database():
 	notes_database.sort_custom(self,"compare_notes")
 	
+
 static func compare_notes(note_a:NoteResource, note_b:NoteResource) -> bool:
-	if note_a==null or note_b == null: return true
 	var a:DateTime = note_a.date_time
 	var b:DateTime = note_b.date_time
 	if a.year > b.year: return true
@@ -43,8 +45,8 @@ static func compare_notes(note_a:NoteResource, note_b:NoteResource) -> bool:
 	
 static func random_note(date:DateTime,text:String) -> NoteResource:
 	return NoteResource.new(
-			Utils.randi_range(0,NoteResource.Mood.size()),
 			date,
+			Utils.randi_range(0,NoteResource.Mood.size()),
 			text)
 
 static func generate_random_notes_in_day(day:DateTime,min_notes:int,max_notes:int) ->Array:
@@ -107,11 +109,20 @@ static func random_last_year_notes() -> Array:
 	return generate_random_notes_between(last_year,next_year,0,3)
 	
 func get_notes_between(start_date:DateTime, end_date:DateTime) -> Array:
+	if Utils.compare_dates(start_date,end_date) < 0:
+		printerr("End date is before start date")
+		return []
 	var notes:=[]
-	for note in notes_database:
-		if Utils.compare_dates(start_date, note.date_time) >= 0 \
-			and Utils.compare_dates(end_date, note.date_time) < 0:
-			notes.append(note)
+	#logic is backwards because they are ordered from the most recent
+	var i:=find_first_index_for_date(end_date)
+
+	var end:=find_last_index_for_date(start_date)
+
+	
+	while i<end:
+		notes.append(notes_database[i])
+		i+=1
+		
 	return notes
 
 func get_last_week_notes() -> Array:
@@ -152,11 +163,16 @@ func get_last_year_notes() -> Array:
 func get_notes_for_date(date:Date) -> Array:
 	var notes:=load_notes()
 	var day_notes:= []
-	for note in notes:
-		note = note as NoteResource
-		var date_time : DateTime = note.date_time
-		if Utils.date_time_equal_date(date_time,date):
-			day_notes.append(note)
+	var d:= Utils.date_to_date_time(date)
+
+	var end:=find_last_index_for_date(d)
+	d.hour = 23
+	d.minute = 59
+	var i:=find_first_index_for_date(d)
+	
+	while i < end:
+		day_notes.append(notes_database[i])
+		i+=1
 	
 	return day_notes
 		
