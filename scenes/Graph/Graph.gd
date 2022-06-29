@@ -33,7 +33,6 @@ func _on_TimeFrame_item_selected(index: int) -> void:
 func draw_week_notes():
 	var last_week:=DateTime.new()
 	last_week.move_to_week_beginning()
-
 	
 	var next_week:DateTime=last_week.duplicate()
 	next_week.move_day_relative(+7)
@@ -104,14 +103,14 @@ func draw_mood_bars(mood_dict:Array, string_array=null):
 	for i in mood_dict.size():
 		var bar:Bar = bar_scene.instance()
 		bar_container.add_child(bar)
-		if mood_dict[i].empty():
-			bar.set_value(0)
-		else:
-			bar.set_value(Utils.average_moods(mood_dict[i])+1)
+		var avg := Utils.average_moods(mood_dict[i])
+		bar.set_value(avg)
 		if string_array == null:
 			bar.set_label(str(i+1))
 		else:
 			bar.set_label(string_array[i])
+			
+
 
 
 func refresh_bar_graph() ->void:

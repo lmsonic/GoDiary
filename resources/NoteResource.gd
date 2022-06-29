@@ -3,7 +3,7 @@ extends Resource
 class_name NoteResource
 
 enum Mood{
-	Sad,
+	Sad = 0,
 	Dissatisfied,
 	Meh,
 	Content,

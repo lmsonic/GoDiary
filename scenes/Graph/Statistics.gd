@@ -52,27 +52,33 @@ func create_label(text:String) -> Label:
 func longest_happy_day_streak()->int:
 	var notes:=NoteDatabase.load_notes()
 	
-	var date_iter:=DateTime.new()
-	var i := NoteDatabase.find_first_index_for_date(date_iter)
+	var today:=DateTime.new()
+	today.move_to_end_day()
+	var i := NoteDatabase.find_first_index_for_date(today)
 	
 	var longest_streak:=0
 	var streak := 0
+	
+	var last_date:= today
 	while i < notes.size():
 		var date:DateTime = notes[i].date_time
-		var date_moods:=NoteDatabase.get_moods_for_date(date)
-		var average:= Utils.average_moods(date_moods)
-		
-		if average < float(NoteResource.Mood.Happy):
+		if Utils.days_between_dates(date,last_date) > 1: 
 			streak = 0
-		else:
+			
+		var date_moods:=NoteDatabase.get_moods_for_date(date)
+		
+		var average:= Utils.average_moods(date_moods) - 1
+	
+		
+		if average >= NoteResource.Mood.Content:
 			streak += 1
+		else:
+			streak =0
 			
 		if streak>longest_streak:
 			longest_streak=streak
-			print(average, " ", date , " ", longest_streak)
-			print(date_moods)
-
-
+			
+		last_date = date
 		i+=date_moods.size()
 	
 	return longest_streak
@@ -81,18 +87,33 @@ func longest_happy_day_streak()->int:
 func happy_day_streak()->int:
 	var notes:=NoteDatabase.load_notes()
 	
-	var date_iter:=DateTime.new()
-	var i := NoteDatabase.find_first_index_for_date(date_iter)
+	var today:=DateTime.new()
+	today.move_to_end_day()
+	var i := NoteDatabase.find_first_index_for_date(today)
 	
-	var streak:=0
+	if Utils.days_between_dates(notes[i].date_time,today) > 0: 
+		return 0
 
-
-	while i < notes.size() and notes[i].mood==NoteResource.Mood.Happy:
+	var streak := 0
+	var last_date:= today
+	while i < notes.size():
 		var date:DateTime = notes[i].date_time
-		while Utils.compare_dates(date_iter,date) < 0:
-			date_iter.prev_day()
-			streak+=1 
-		i+=1
+		if Utils.days_between_dates(date,last_date) > 1: 
+			return streak
+		var date_moods:=NoteDatabase.get_moods_for_date(date)
+		
+		
+		var average:= Utils.average_moods(date_moods) - 1
+	
+		print(average)
+		if average >= NoteResource.Mood.Content:
+			streak +=1
+		else:
+			break
+		
+		last_date = date
+		i+=date_moods.size()
+		
 	
 	return streak
 	
@@ -121,21 +142,18 @@ func happiest_month()-> int:
 func days_passed_from_worst_mood()->int:
 	var notes:=NoteDatabase.load_notes()
 	
-	var date_iter:=DateTime.new()
+	var today:=DateTime.new()
+	today.move_to_end_day()
+	var i := NoteDatabase.find_first_index_for_date(today)
 	
-	var i := NoteDatabase.find_first_index_for_date(date_iter)
+	var worst_mood_date:DateTime = today
 	
-	var streak:=0
-	
-	while i < notes.size() and Utils.compare_dates(date_iter,notes[i].date_time) < 0:
-		date_iter.prev_day()
-		streak+=1 
-	
-	while i < notes.size() and notes[i].mood!=NoteResource.Mood.Sad:
+	while i < notes.size():
 		var date:DateTime = notes[i].date_time
-		while Utils.compare_dates(date_iter,date) < 0:
-			date_iter.prev_day()
-			streak+=1 
+		var date_moods:=NoteDatabase.get_moods_for_date(date)
+		if date_moods.find(NoteResource.Mood.Sad) != -1: 
+			worst_mood_date = date
+			break
 		i+=1
 	
-	return streak
+	return Utils.days_between_dates(worst_mood_date,today)

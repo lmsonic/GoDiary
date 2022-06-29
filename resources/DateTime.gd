@@ -28,7 +28,6 @@ func _init(day:int=Calendar.day(),month:int=Calendar.month(),year:int=Calendar.y
 	self.minute = minute
 	
 
-	
 
 func move_to_year_beginning():
 	month=1
@@ -45,12 +44,16 @@ func next_day():
 	
 func prev_day():
 	day -=1
+	if day > Calendar.get_days_in_month(month, year):
+		day = Calendar.get_days_in_month(month, year)
 	if day < 1:
 		prev_month()
 		day = Calendar.get_days_in_month(month,year) 
 
 func next_month():
 	month +=1
+	if day > Calendar.get_days_in_month(month, year):
+		day = Calendar.get_days_in_month(month, year)
 	if month > 12:
 		month = 1
 		next_year()
@@ -66,7 +69,17 @@ func next_year():
 	year +=1
 	
 func prev_year():
-	month -=1
+	year -=1
+
+func move_to_end_day():
+	hour = 23
+	minute = 59
+
+
+func move_to_begin_day():
+	hour = 0
+	minute = 0
+
 
 func move_to_month_beginning():
 	day=1

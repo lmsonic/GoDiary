@@ -3,15 +3,20 @@ extends Node
 
 
 var notes_database:=[] 
-const min_rand_notes := 1
+const min_rand_notes := 0
 const max_rand_notes := 3
 
+const min_rand_mood :=  0
+const max_rand_mood := NoteResource.Mood.Happy + 1
+
+
 func _ready() -> void:
+	
 	randomize()
 	notes_database.append_array(random_last_month_notes())
 	sort_database()
-	print("sorted")
 	
+
 func find_first_index_for_date(date:DateTime) ->int:
 	var note:=NoteResource.new(date)
 	return notes_database.bsearch_custom(note,self,"compare_notes")
@@ -47,7 +52,7 @@ static func compare_notes(note_a:NoteResource, note_b:NoteResource) -> bool:
 static func random_note(date:DateTime,text:String) -> NoteResource:
 	var note:=NoteResource.new(
 			date,
-			Utils.randi_range(NoteResource.Mood.size()-2,NoteResource.Mood.size()),
+			Utils.randi_range(min_rand_mood,max_rand_mood),
 			text)
 	return note
 
@@ -68,9 +73,9 @@ static func generate_random_notes_between(start_date:DateTime, end_date:DateTime
 		return []
 	
 	var notes:=[]
-	var date_iter:DateTime= start_date.duplicate()
+	var date_iter:DateTime = start_date.duplicate()
 	
-	while Utils.compare_dates(end_date, date_iter) < 0:
+	while Utils.compare_dates(end_date, date_iter) <= 0:
 		var day_notes:= generate_random_notes_in_day(date_iter.duplicate(),min_notes,max_notes)
 		notes.append_array(day_notes)
 		date_iter.next_day()
@@ -119,11 +124,13 @@ func get_notes_between(start_date:DateTime, end_date:DateTime) -> Array:
 	var i:=find_first_index_for_date(end_date)
 
 	var end:=find_last_index_for_date(start_date)
-
 	
-	while i<end:
+	
+	
+	while i < end:
 		notes.append(notes_database[i])
 		i+=1
+
 		
 	return notes
 
@@ -166,10 +173,8 @@ func get_notes_for_date(date:Date) -> Array:
 	var notes:=load_notes()
 	var day_notes:= []
 	var d:= Utils.date_to_date_time(date)
-	
 	var end:=find_last_index_for_date(d)
-	d.hour = 23
-	d.minute = 59
+	d.move_to_end_day()
 	var i:=find_first_index_for_date(d)
 	
 	while i < end:
@@ -181,11 +186,9 @@ func get_notes_for_date(date:Date) -> Array:
 func get_moods_for_date(d:DateTime) -> Array:
 	var notes:=load_notes()
 	var day_moods:= []
-	d.hour = 0
-	d.minute = 0
+	d.move_to_begin_day()
 	var end:=find_last_index_for_date(d)
-	d.hour = 23
-	d.minute = 59
+	d.move_to_end_day()
 	var i:=find_first_index_for_date(d)
 	
 	while i < end:
