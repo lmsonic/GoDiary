@@ -37,22 +37,21 @@ margin_bottom = 74.0
 text = "28 May 2022"
 align = 1
 
-[node name="HSeparator" type="HSeparator" parent="."]
-margin_top = 78.0
+[node name="HSeparator" type="HSeparator" parent="Date"]
+margin_top = 64.0
 margin_right = 1080.0
-margin_bottom = 88.0
+margin_bottom = 74.0
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="."]
-margin_top = 92.0
+margin_top = 78.0
 margin_right = 1080.0
-margin_bottom = 530.0
+margin_bottom = 516.0
 
 [node name="Emoji" type="TextureRect" parent="HBoxContainer2"]
 margin_right = 100.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 100, 100 )
 size_flags_vertical = 0
-texture = ExtResource( 4 )
 expand = true
 stretch_mode = 5
 
@@ -68,9 +67,9 @@ align = 1
 autowrap = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-margin_top = 534.0
+margin_top = 520.0
 margin_right = 1080.0
-margin_bottom = 634.0
+margin_bottom = 620.0
 alignment = 1
 
 [node name="Edit" type="TextureButton" parent="HBoxContainer"]
@@ -104,8 +103,8 @@ texture_pressed = ExtResource( 14 )
 expand = true
 
 [node name="HSeparator2" type="HSeparator" parent="."]
-margin_top = 638.0
+margin_top = 624.0
 margin_right = 1080.0
-margin_bottom = 648.0
+margin_bottom = 634.0
 
 [connection signal="pressed" from="HBoxContainer/Edit" to="." method="_on_Edit_pressed"]

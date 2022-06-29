@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/Graph/Graph.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Graph/Bar.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Roboto-Regular.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://theme.tres" type="Theme" id=4]
+[ext_resource path="res://scenes/Graph/Statistics.gd" type="Script" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 80
@@ -52,19 +53,17 @@ autowrap = true
 [node name="BarGraph" type="Control" parent="VBoxContainer"]
 margin_top = 478.0
 margin_right = 1070.0
-margin_bottom = 2330.0
+margin_bottom = 1402.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/BarGraph"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 67.0
-margin_bottom = -362.0
 
 [node name="BarContainer" type="GridContainer" parent="VBoxContainer/BarGraph/MarginContainer"]
 margin_right = 1070.0
-margin_bottom = 1423.0
+margin_bottom = 924.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -72,6 +71,13 @@ size_flags_vertical = 3
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 1070.0
-margin_bottom = 1423.0
+margin_bottom = 924.0
+
+[node name="StatisticsContainer" type="VBoxContainer" parent="VBoxContainer"]
+margin_top = 1406.0
+margin_right = 1070.0
+margin_bottom = 2330.0
+size_flags_vertical = 3
+script = ExtResource( 5 )
 
 [connection signal="item_selected" from="VBoxContainer/TimeFrame" to="." method="_on_TimeFrame_item_selected"]

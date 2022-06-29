@@ -13,7 +13,7 @@ onready var camera :=$HBoxContainer/Camera
 onready var microphone :=$HBoxContainer/Microphone
 
 func _ready() -> void:
-	if note.mood:
+	if note.mood>= NoteResource.Mood.Sad and note.mood <= NoteResource.Mood.Happy:
 		emoji.texture = emojis[note.mood]
 	text.text = note.text
 	var date_time = note.date_time as DateTime

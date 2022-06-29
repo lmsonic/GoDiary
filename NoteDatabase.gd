@@ -2,14 +2,19 @@ extends Node
 
 
 
-var notes_database:=[]
+var notes_database:=[] setget set_notes,get_notes
 
 func _ready() -> void:
 	notes_database.append_array(random_last_year_notes())
 	sort_database()
 	print("sorted")
+	
+func set_notes(notes:Array) ->void:
+	notes_database=notes
+	sort_database()
 
-
+func get_notes() -> Array:
+	return notes_database
 	
 func find_first_index_for_date(date:DateTime) ->int:
 	var note:=NoteResource.new(date)
@@ -44,10 +49,11 @@ static func compare_notes(note_a:NoteResource, note_b:NoteResource) -> bool:
 
 	
 static func random_note(date:DateTime,text:String) -> NoteResource:
-	return NoteResource.new(
+	var note:=NoteResource.new(
 			date,
 			Utils.randi_range(0,NoteResource.Mood.size()),
 			text)
+	return note
 
 static func generate_random_notes_in_day(day:DateTime,min_notes:int,max_notes:int) ->Array:
 	var notes:=[]
@@ -81,10 +87,10 @@ static func random_last_week_notes() -> Array:
 	var last_week:DateTime=DateTime.new()
 	last_week.move_to_week_beginning()
 	
-	var next_week:DateTime=last_week.duplicate()
-	next_week.move_day_relative(7)
+	var now:DateTime=DateTime.new()
+
 	
-	return generate_random_notes_between(last_week,next_week,0,3)
+	return generate_random_notes_between(last_week,now,0,3)
 		
 static func random_last_month_notes() -> Array:
 	var last_month_notes:=[]
@@ -92,10 +98,10 @@ static func random_last_month_notes() -> Array:
 	var last_month:DateTime=DateTime.new()
 	last_month.move_to_month_beginning()
 	
-	var next_month:DateTime=last_month.duplicate()
-	next_month.next_month()
+	var now:DateTime=DateTime.new()
+
 	
-	return generate_random_notes_between(last_month,next_month,0,3)
+	return generate_random_notes_between(last_month,now,0,3)
 	
 static func random_last_year_notes() -> Array:
 	var last_year_notes:=[]
@@ -103,10 +109,10 @@ static func random_last_year_notes() -> Array:
 	var last_year:DateTime=DateTime.new()
 	last_year.move_to_year_beginning()
 	
-	var next_year:DateTime=last_year.duplicate()
-	next_year.next_year()
+	var now:DateTime=DateTime.new()
+
 		
-	return generate_random_notes_between(last_year,next_year,0,3)
+	return generate_random_notes_between(last_year,now,0,3)
 	
 func get_notes_between(start_date:DateTime, end_date:DateTime) -> Array:
 	if Utils.compare_dates(start_date,end_date) < 0:
@@ -131,7 +137,7 @@ func get_last_week_notes() -> Array:
 	var last_week:DateTime=DateTime.new()
 	last_week.move_to_week_beginning()
 	
-	var next_week:DateTime=last_week.duplicate()
+	var next_week:DateTime=DateTime.new()
 	next_week.move_day_relative(+7)
 	
 	return get_notes_between(last_week,next_week)

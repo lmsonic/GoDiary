@@ -84,6 +84,6 @@ func move_day_relative(amount:int):
 		for i in amount:
 			next_day()
 	elif amount < 0:
-		for i in amount:
+		for i in -amount:
 			prev_day()
 

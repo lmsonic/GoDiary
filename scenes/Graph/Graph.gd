@@ -3,6 +3,7 @@ extends PanelContainer
 onready var time_frame:OptionButton=$VBoxContainer/TimeFrame
 onready var bar_container:GridContainer=$VBoxContainer/BarGraph/MarginContainer/BarContainer
 onready var period_label:=$VBoxContainer/PeriodLabel
+onready var stats_container:=$VBoxContainer/StatisticsContainer
 
 var bar_scene:=preload("res://scenes/Graph/Bar.tscn")
 
@@ -19,6 +20,7 @@ func _ready() -> void:
 	clear_bar_graph()
 	refresh_bar_graph()
 
+	
 func clear_bar_graph():
 	for bar in bar_container.get_children():
 		bar.queue_free()
@@ -31,6 +33,7 @@ func _on_TimeFrame_item_selected(index: int) -> void:
 func draw_week_notes():
 	var last_week:=DateTime.new()
 	last_week.move_to_week_beginning()
+
 	
 	var next_week:DateTime=last_week.duplicate()
 	next_week.move_day_relative(+7)
@@ -94,6 +97,7 @@ func draw_year_notes():
 		year_dict[note.date_time.month - 1].append(note.mood)
 	
 	draw_mood_bars(year_dict,Calendar.MONTH_NAME)
+
 		
 func draw_mood_bars(mood_dict:Array, string_array=null):
 	bar_container.columns = mood_dict.size()
@@ -115,4 +119,5 @@ func refresh_bar_graph() ->void:
 			draw_month_notes()
 		Year:
 			draw_year_notes()
+			
 			
