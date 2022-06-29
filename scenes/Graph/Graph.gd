@@ -104,7 +104,10 @@ func draw_mood_bars(mood_dict:Array, string_array=null):
 	for i in mood_dict.size():
 		var bar:Bar = bar_scene.instance()
 		bar_container.add_child(bar)
-		bar.set_value(Utils.average_moods(mood_dict[i]))
+		if mood_dict[i].empty():
+			bar.set_value(0)
+		else:
+			bar.set_value(Utils.average_moods(mood_dict[i])+1)
 		if string_array == null:
 			bar.set_label(str(i+1))
 		else:

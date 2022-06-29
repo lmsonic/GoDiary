@@ -9,6 +9,8 @@ static func randi_range(min_value:int, max_value:int) -> int:
 static func date_to_date_time(date:Date)->DateTime:
 	return DateTime.new(date.day(),date.month(),date.year(),0,0)
 
+static func date_time_equal(a:DateTime, b:DateTime)->bool:
+	return a.day == b.day and a.month == b.month and a.year == b.year
 		
 static func date_time_equal_date(date_time:DateTime, date:Date)->bool:
 	return date_time.day == date.day() and date_time.month == date.month() and date_time.year == date.year()
@@ -47,5 +49,5 @@ static func average_moods(moods:Array) -> float:
 	
 	var average_mood:=0.0
 	for mood in moods:
-		average_mood += float(mood + 1)
+		average_mood += float(mood)
 	return average_mood/moods.size()

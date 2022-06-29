@@ -2,19 +2,15 @@ extends Node
 
 
 
-var notes_database:=[] setget set_notes,get_notes
+var notes_database:=[] 
+const min_rand_notes := 1
+const max_rand_notes := 3
 
 func _ready() -> void:
-	notes_database.append_array(random_last_year_notes())
+	randomize()
+	notes_database.append_array(random_last_month_notes())
 	sort_database()
 	print("sorted")
-	
-func set_notes(notes:Array) ->void:
-	notes_database=notes
-	sort_database()
-
-func get_notes() -> Array:
-	return notes_database
 	
 func find_first_index_for_date(date:DateTime) ->int:
 	var note:=NoteResource.new(date)
@@ -51,7 +47,7 @@ static func compare_notes(note_a:NoteResource, note_b:NoteResource) -> bool:
 static func random_note(date:DateTime,text:String) -> NoteResource:
 	var note:=NoteResource.new(
 			date,
-			Utils.randi_range(0,NoteResource.Mood.size()),
+			Utils.randi_range(NoteResource.Mood.size()-2,NoteResource.Mood.size()),
 			text)
 	return note
 
@@ -90,7 +86,7 @@ static func random_last_week_notes() -> Array:
 	var now:DateTime=DateTime.new()
 
 	
-	return generate_random_notes_between(last_week,now,0,3)
+	return generate_random_notes_between(last_week,now,min_rand_notes,max_rand_notes)
 		
 static func random_last_month_notes() -> Array:
 	var last_month_notes:=[]
@@ -101,7 +97,7 @@ static func random_last_month_notes() -> Array:
 	var now:DateTime=DateTime.new()
 
 	
-	return generate_random_notes_between(last_month,now,0,3)
+	return generate_random_notes_between(last_month,now,min_rand_notes,max_rand_notes)
 	
 static func random_last_year_notes() -> Array:
 	var last_year_notes:=[]
@@ -112,7 +108,7 @@ static func random_last_year_notes() -> Array:
 	var now:DateTime=DateTime.new()
 
 		
-	return generate_random_notes_between(last_year,now,0,3)
+	return generate_random_notes_between(last_year,now,min_rand_notes,max_rand_notes)
 	
 func get_notes_between(start_date:DateTime, end_date:DateTime) -> Array:
 	if Utils.compare_dates(start_date,end_date) < 0:
@@ -170,7 +166,7 @@ func get_notes_for_date(date:Date) -> Array:
 	var notes:=load_notes()
 	var day_notes:= []
 	var d:= Utils.date_to_date_time(date)
-
+	
 	var end:=find_last_index_for_date(d)
 	d.hour = 23
 	d.minute = 59
@@ -181,6 +177,22 @@ func get_notes_for_date(date:Date) -> Array:
 		i+=1
 	
 	return day_notes
+	
+func get_moods_for_date(d:DateTime) -> Array:
+	var notes:=load_notes()
+	var day_moods:= []
+	d.hour = 0
+	d.minute = 0
+	var end:=find_last_index_for_date(d)
+	d.hour = 23
+	d.minute = 59
+	var i:=find_first_index_for_date(d)
+	
+	while i < end:
+		day_moods.append(notes_database[i].mood)
+		i+=1
+	
+	return day_moods
 		
 func delete_note(note:NoteResource) -> void:
 	if notes_database.find(note) != -1:
