@@ -18,3 +18,7 @@ func _on_CheckBox_toggled(button_pressed: bool) -> void:
 		label.bbcode_text = "[s]" + text + "[/s]"
 	else:
 		label.bbcode_text = text
+
+
+func _on_TextureButton_pressed() -> void:
+	queue_free()

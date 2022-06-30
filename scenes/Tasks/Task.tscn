@@ -1,20 +1,23 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://theme.tres" type="Theme" id=1]
 [ext_resource path="res://assets/checkbox.png" type="Texture" id=2]
 [ext_resource path="res://assets/checkboxdone.png" type="Texture" id=3]
 [ext_resource path="res://scenes/Tasks/Task.gd" type="Script" id=4]
 [ext_resource path="res://assets/drag.png" type="Texture" id=5]
+[ext_resource path="res://assets/delete.png" type="Texture" id=6]
 
 [node name="Task" type="HBoxContainer"]
 anchor_right = 1.0
-margin_bottom = 80.0
+margin_right = -1.0
+margin_bottom = 142.0
 theme = ExtResource( 1 )
+alignment = 1
 script = ExtResource( 4 )
 
 [node name="Drag" type="TextureButton" parent="."]
-margin_right = 46.0
-margin_bottom = 80.0
+margin_right = 29.0
+margin_bottom = 142.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture_normal = ExtResource( 5 )
@@ -22,9 +25,9 @@ expand = true
 stretch_mode = 5
 
 [node name="CheckBox" type="TextureButton" parent="."]
-margin_left = 50.0
-margin_right = 97.0
-margin_bottom = 80.0
+margin_left = 33.0
+margin_right = 62.0
+margin_bottom = 142.0
 rect_min_size = Vector2( 0.009, 0 )
 size_flags_horizontal = 3
 toggle_mode = true
@@ -34,13 +37,24 @@ expand = true
 stretch_mode = 5
 
 [node name="Label" type="RichTextLabel" parent="."]
-margin_left = 101.0
-margin_right = 1080.0
-margin_bottom = 80.0
+margin_left = 66.0
+margin_right = 1045.0
+margin_bottom = 142.0
 rect_min_size = Vector2( 979, 80 )
 bbcode_enabled = true
 bbcode_text = "[s]Sample Text[/s]"
 meta_underlined = false
 text = "Sample Text"
 
+[node name="TextureButton" type="TextureButton" parent="."]
+margin_left = 1049.0
+margin_right = 1079.0
+margin_bottom = 142.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 6 )
+expand = true
+stretch_mode = 5
+
 [connection signal="toggled" from="CheckBox" to="." method="_on_CheckBox_toggled"]
+[connection signal="pressed" from="TextureButton" to="." method="_on_TextureButton_pressed"]
