@@ -48,6 +48,7 @@ func on_drag_end(task:Task):
 	if drop_task == null or selected_task == null: return
 	tasks.move_child(selected_task,drop_task.get_index())
 	selected_task.modulate = Color.white
+	selected_task = null
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventScreenDrag:
