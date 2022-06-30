@@ -28,26 +28,29 @@ func _process(delta):
 		input.rect_position.y = old_height
 
 func add_todo(text):
-	var task := task_scene.instance()
+	var task :Task= task_scene.instance()
+	var drag:= task.get_node("Drag") as TextureButton
+	drag.connect("button_down",self,"on_drag_start",[task])
+	drag.connect("button_up",self,"on_drag_end",[task])
 	task.set_text(text)
 	tasks.add_child(task)
 	
 	OS.hide_virtual_keyboard()
-
+	
 var selected_task:Task
 
+func on_drag_start(task:Task):
+	selected_task = task
+	selected_task.modulate = Color.aqua
+	
+func on_drag_end(task:Task):
+	var drop_task:= get_task_over_position(get_global_mouse_position())
+	if drop_task == null or selected_task == null: return
+	tasks.move_child(selected_task,drop_task.get_index())
+	selected_task.modulate = Color.white
+
 func _input(event: InputEvent) -> void:
-	if event is InputEventScreenTouch:
-		if event.pressed:
-			selected_task = get_task_over_position(event.position)
-			if selected_task == null: return
-			selected_task.modulate = Color.aqua
-		else:
-			var drop_task:= get_task_over_position(event.position)
-			if drop_task == null or selected_task == null: return
-			tasks.move_child(selected_task,drop_task.get_index())
-			selected_task.modulate = Color.white
-	elif event is InputEventScreenDrag:
+	if event is InputEventScreenDrag:
 		var drop_task:= get_task_over_position(event.position)
 		if drop_task == null or selected_task == null: return
 		tasks.move_child(selected_task,drop_task.get_index())
@@ -57,6 +60,8 @@ func get_task_over_position(position:Vector2) -> Task:
 		if task.get_global_rect().has_point(position):
 			return task
 	return null
+	
+
 	
 func get_task_over_y(y:float) -> Task:
 	var center:= tasks.rect_global_position + tasks.rect_size/2
