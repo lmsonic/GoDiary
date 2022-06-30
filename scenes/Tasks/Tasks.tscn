@@ -36,6 +36,11 @@ valign = 1
 [node name="TodoList" type="VBoxContainer" parent="VBoxContainer"]
 margin_top = 295.0
 margin_right = 1070.0
+margin_bottom = 295.0
+
+[node name="Tree" type="Tree" parent="VBoxContainer"]
+margin_top = 299.0
+margin_right = 1070.0
 margin_bottom = 2193.0
 size_flags_vertical = 3
 
