@@ -45,13 +45,13 @@ func _input(event: InputEvent) -> void:
 		else:
 			var drop_task:= get_task_over_position(event.position)
 			if drop_task == null or selected_task == null: return
-			tasks.move_child(selected_task,drop_task.get_index()-1)
+			tasks.move_child(selected_task,drop_task.get_index())
+			selected_task.modulate = Color.white
 	elif event is InputEventScreenDrag:
 		var drop_task:= get_task_over_position(event.position)
 		if drop_task == null or selected_task == null: return
 		tasks.move_child(selected_task,drop_task.get_index())
 		
-
 func get_task_over_position(position:Vector2) -> Task:
 	for task in tasks.get_children():
 		if task.get_global_rect().has_point(position):
