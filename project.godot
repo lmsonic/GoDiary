@@ -77,6 +77,9 @@ _global_script_class_icons={
 config/name="GoDiary"
 run/main_scene="res://scenes/Main/Main.tscn"
 run/low_processor_mode_sleep_usec=5000
+boot_splash/image="res://boot.png"
+boot_splash/use_filter=false
+boot_splash/bg_color=Color( 0, 0, 0, 1 )
 config/icon="res://icon.png"
 
 [autoload]
