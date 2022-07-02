@@ -91,7 +91,7 @@ func happy_day_streak()->int:
 	today.move_to_end_day()
 	var i := NoteDatabase.find_first_index_for_date(today)
 		
-	if notes.empty() or Utils.days_between_dates(notes[i].date_time,today) > 0: 
+	if notes.empty() or i>=notes.size() or Utils.days_between_dates(notes[i].date_time,today) > 0: 
 		return 0
 		
 	var streak := 0

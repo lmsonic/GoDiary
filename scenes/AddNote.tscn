@@ -305,6 +305,7 @@ size_flags_vertical = 3
 
 [node name="Tween" type="Tween" parent="."]
 
+[connection signal="date_selected" from="VBoxContainer/DateContainer/VBoxContainer/CalendarButton" to="." method="_on_CalendarButton_date_selected"]
 [connection signal="focus_exited" from="VBoxContainer/DateContainer/VBoxContainer/HBoxContainer/HourLabel" to="." method="_on_HourLabel_focus_exited"]
 [connection signal="text_changed" from="VBoxContainer/DateContainer/VBoxContainer/HBoxContainer/HourLabel" to="." method="_on_HourLabel_text_changed"]
 [connection signal="focus_exited" from="VBoxContainer/DateContainer/VBoxContainer/HBoxContainer/MinuteLabel" to="." method="_on_MinuteLabel_focus_exited"]
