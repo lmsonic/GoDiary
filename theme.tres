@@ -102,3 +102,7 @@ PanelContainer/styles/panel = SubResource( 2 )
 TextEdit/fonts/font = SubResource( 9 )
 TextEdit/styles/focus = SubResource( 8 )
 TextEdit/styles/normal = SubResource( 8 )
+WindowDialog/constants/close_v_ofs = 0
+WindowDialog/constants/scaleborder_size = 0
+WindowDialog/icons/close_highlight = null
+WindowDialog/styles/panel = SubResource( 2 )

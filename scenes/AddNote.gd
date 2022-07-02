@@ -4,6 +4,8 @@ onready var calendar_button:=$VBoxContainer/DateContainer/VBoxContainer/Calendar
 onready var hour_label:=$VBoxContainer/DateContainer/VBoxContainer/HBoxContainer/HourLabel
 onready var minute_label:=$VBoxContainer/DateContainer/VBoxContainer/HBoxContainer/MinuteLabel
 
+onready var confirmation_dialog:=$Control/ConfirmationDialog
+
 onready var text_edit:=$VBoxContainer/TextEdit
 onready var camera_button:=$VBoxContainer/HBoxContainer/Camera
 onready var audio_button:=$VBoxContainer/HBoxContainer/Microphone
@@ -19,7 +21,6 @@ var note:NoteResource
 func _ready() -> void:
 	get_tree().set_quit_on_go_back(false)
 	
-	print(Globals.selected_date.get_date_string())
 	if Globals.selected_note != null:
 		note = Globals.selected_note
 	else:
@@ -44,7 +45,7 @@ func _notification(what):
 	if what == MainLoop.NOTIFICATION_WM_GO_BACK_REQUEST:
 		if Globals.selected_note:
 			Globals.selected_note=null
-		switch_to_previous_scene()
+		confirmation_dialog.popup()
 	
 	
 
@@ -137,8 +138,6 @@ func _on_SaveButton_pressed() -> void:
 	NoteDatabase.add_note(note)
 	switch_to_previous_scene()
 
-
-
 func _on_Camera_toggled(button_pressed: bool) -> void:
 	if button_pressed:
 		note.photo = Image.new()
@@ -159,6 +158,13 @@ func switch_to_previous_scene():
 	else:
 		get_tree().change_scene("res://scenes/Calendar/Day.tscn")
 
+var scheduled_deletion:=false
+
 func _on_DeleteButton_pressed() -> void:
-	NoteDatabase.delete_note(note)
+	scheduled_deletion = true
+	confirmation_dialog.popup()
+
+func _on_ConfirmationDialog_confirmed() -> void:
+	if scheduled_deletion:
+		NoteDatabase.delete_note(note)
 	switch_to_previous_scene()
