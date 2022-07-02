@@ -1,7 +1,8 @@
 # GoDiary
 
 An high fidelity prototype Android application made for the Human Machine Interaction course at University of Cagliari.
-Made in the Godot game engine
+
+Made in the Godot game engine.
 
 ### Features
 - Can add notes with date, mood and text
