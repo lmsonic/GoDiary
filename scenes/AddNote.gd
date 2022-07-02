@@ -14,17 +14,20 @@ onready var buttons_container:=$VBoxContainer/ButtonsContainer
 onready var tween:Tween=$Tween
 
 
-var note:NoteResource = NoteResource.new()
+var note:NoteResource
 
 func _ready() -> void:
 	get_tree().set_quit_on_go_back(false)
 	
+	print(Globals.selected_date.get_date_string())
 	if Globals.selected_note != null:
 		note = Globals.selected_note
-	elif Globals.selected_date != null:
-		note.date_time.day = Globals.selected_date.day
-		note.date_time.month = Globals.selected_date.month
-		note.date_time.year = Globals.selected_date.year
+	else:
+		note = NoteResource.new()
+		if Globals.selected_date != null:
+			note.date_time.day = Globals.selected_date.day
+			note.date_time.month = Globals.selected_date.month
+			note.date_time.year = Globals.selected_date.year
 	
 		
 	
@@ -41,10 +44,7 @@ func _notification(what):
 	if what == MainLoop.NOTIFICATION_WM_GO_BACK_REQUEST:
 		if Globals.selected_note:
 			Globals.selected_note=null
-		if Globals.selected_date == null:
-			get_tree().change_scene("res://scenes/Main/Main.tscn")
-		else:
-			get_tree().change_scene("res://scenes/Calendar/Day.tscn")
+		switch_to_previous_scene()
 	
 	
 
@@ -135,7 +135,8 @@ func _on_HappyButton_pressed() -> void:
 func _on_SaveButton_pressed() -> void:
 	note.text = text_edit.text
 	NoteDatabase.add_note(note)
-	get_tree().change_scene("res://scenes/Main/Main.tscn")
+	switch_to_previous_scene()
+
 
 
 func _on_Camera_toggled(button_pressed: bool) -> void:
@@ -152,9 +153,12 @@ func _on_Microphone_toggled(button_pressed: bool) -> void:
 		note.audio = null
 
 
-func _on_DeleteButton_pressed() -> void:
-	NoteDatabase.delete_note(note)
+func switch_to_previous_scene():
 	if Globals.selected_date == null:
 		get_tree().change_scene("res://scenes/Main/Main.tscn")
 	else:
 		get_tree().change_scene("res://scenes/Calendar/Day.tscn")
+
+func _on_DeleteButton_pressed() -> void:
+	NoteDatabase.delete_note(note)
+	switch_to_previous_scene()
