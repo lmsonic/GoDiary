@@ -1,22 +1,23 @@
 extends PanelContainer
 
-onready var time_frame:OptionButton=$VBoxContainer/TimeFrame
 onready var bar_container:GridContainer=$VBoxContainer/BarGraph/MarginContainer/BarContainer
 onready var period_label:=$VBoxContainer/PeriodLabel
 onready var stats_container:=$VBoxContainer/StatisticsContainer
 
+onready var prev_time_frame_button:Button=$VBoxContainer/TimeFrame/PrevTimeFrame
+onready var next_time_frame_button:Button=$VBoxContainer/TimeFrame/NextTimeFrame
+onready var time_frame_label:Label=$VBoxContainer/TimeFrame/TimeFrameLabel
+
 var bar_scene:=preload("res://scenes/Graph/Bar.tscn")
 
-enum{
+enum TimeFrame{
 	Week,Month,Year
 }
-
+var time_frame=TimeFrame.Week
+var time_frame_strings:= ["Week","Month","Year"]
 
 
 func _ready() -> void:
-	time_frame.add_item("Week",Week)
-	time_frame.add_item("Month",Month)
-	time_frame.add_item("Year",Year)
 	clear_bar_graph()
 	refresh_bar_graph()
 
@@ -26,9 +27,20 @@ func clear_bar_graph():
 		bar.queue_free()
 
 
-func _on_TimeFrame_item_selected(index: int) -> void:
+
+func _on_PrevTimeFrame_pressed() -> void:
 	clear_bar_graph()
+	time_frame= (time_frame - 1) % TimeFrame.size()
+	time_frame_label.text = time_frame_strings[time_frame]
 	refresh_bar_graph()
+
+
+func _on_NextTimeFrame_pressed() -> void:
+	clear_bar_graph()
+	time_frame= (time_frame + 1) % TimeFrame.size()
+	time_frame_label.text = time_frame_strings[time_frame]
+	refresh_bar_graph()
+	
 
 func draw_week_notes():
 	var last_week:=DateTime.new()
@@ -114,12 +126,13 @@ func draw_mood_bars(mood_dict:Array, string_array=null):
 
 
 func refresh_bar_graph() ->void:
-	match time_frame.selected:
-		Week:
+	match time_frame:
+		TimeFrame.Week:
 			draw_week_notes()
-		Month:
+		TimeFrame.Month:
 			draw_month_notes()
-		Year:
+		TimeFrame.Year:
 			draw_year_notes()
 			
 			
+

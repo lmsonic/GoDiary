@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/Graph/Graph.gd" type="Script" id=1]
 [ext_resource path="res://Roboto-Regular.ttf" type="DynamicFontData" id=3]
@@ -8,6 +8,10 @@
 [sub_resource type="DynamicFont" id=1]
 size = 80
 use_filter = true
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 80
 font_data = ExtResource( 3 )
 
 [node name="Graph" type="PanelContainer"]
@@ -33,15 +37,41 @@ Graph"
 align = 1
 valign = 1
 
-[node name="TimeFrame" type="OptionButton" parent="VBoxContainer"]
+[node name="TimeFrame" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 295.0
 margin_right = 1070.0
-margin_bottom = 375.0
+margin_bottom = 410.0
+
+[node name="PrevTimeFrame" type="Button" parent="VBoxContainer/TimeFrame"]
+margin_right = 354.0
+margin_bottom = 115.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 2 )
+text = "<"
+
+[node name="TimeFrameLabel" type="Label" parent="VBoxContainer/TimeFrame"]
+margin_left = 358.0
+margin_top = 10.0
+margin_right = 712.0
+margin_bottom = 105.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 2 )
+text = "Week"
+align = 1
+valign = 1
+
+[node name="NextTimeFrame" type="Button" parent="VBoxContainer/TimeFrame"]
+margin_left = 716.0
+margin_right = 1070.0
+margin_bottom = 115.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 2 )
+text = ">"
 
 [node name="PeriodLabel" type="Label" parent="VBoxContainer"]
-margin_top = 379.0
+margin_top = 414.0
 margin_right = 1070.0
-margin_bottom = 474.0
+margin_bottom = 509.0
 size_flags_vertical = 0
 custom_fonts/font = SubResource( 1 )
 text = "From X to Y"
@@ -50,9 +80,9 @@ valign = 1
 autowrap = true
 
 [node name="BarGraph" type="Control" parent="VBoxContainer"]
-margin_top = 478.0
+margin_top = 513.0
 margin_right = 1070.0
-margin_bottom = 1402.0
+margin_bottom = 1419.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -62,15 +92,16 @@ anchor_bottom = 1.0
 
 [node name="BarContainer" type="GridContainer" parent="VBoxContainer/BarGraph/MarginContainer"]
 margin_right = 1070.0
-margin_bottom = 924.0
+margin_bottom = 906.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="StatisticsContainer" type="VBoxContainer" parent="VBoxContainer"]
-margin_top = 1406.0
+margin_top = 1423.0
 margin_right = 1070.0
 margin_bottom = 2330.0
 size_flags_vertical = 3
 script = ExtResource( 5 )
 
-[connection signal="item_selected" from="VBoxContainer/TimeFrame" to="." method="_on_TimeFrame_item_selected"]
+[connection signal="pressed" from="VBoxContainer/TimeFrame/PrevTimeFrame" to="." method="_on_PrevTimeFrame_pressed"]
+[connection signal="pressed" from="VBoxContainer/TimeFrame/NextTimeFrame" to="." method="_on_NextTimeFrame_pressed"]
