@@ -11,10 +11,10 @@ const max_rand_mood := NoteResource.Mood.Happy + 1
 
 
 func _ready() -> void:
-	
-	randomize()
-	notes_database.append_array(random_last_month_notes())
-	sort_database()
+	pass
+#	randomize()
+#	notes_database.append_array(random_last_month_notes())
+#	sort_database()
 	
 
 func find_first_index_for_date(date:DateTime) ->int:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://theme.tres" type="Theme" id=1]
 [ext_resource path="res://assets/checkbox.png" type="Texture" id=2]
@@ -6,6 +6,12 @@
 [ext_resource path="res://scenes/Tasks/Task.gd" type="Script" id=4]
 [ext_resource path="res://assets/drag.png" type="Texture" id=5]
 [ext_resource path="res://assets/delete.png" type="Texture" id=6]
+[ext_resource path="res://Roboto-Regular.ttf" type="DynamicFontData" id=7]
+
+[sub_resource type="DynamicFont" id=1]
+size = 60
+use_filter = true
+font_data = ExtResource( 7 )
 
 [node name="Task" type="HBoxContainer"]
 anchor_right = 1.0
@@ -41,6 +47,7 @@ margin_left = 66.0
 margin_right = 1045.0
 margin_bottom = 142.0
 rect_min_size = Vector2( 979, 80 )
+custom_fonts/normal_font = SubResource( 1 )
 bbcode_enabled = true
 bbcode_text = "[s]Sample Text[/s]"
 meta_underlined = false

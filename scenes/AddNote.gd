@@ -1,6 +1,6 @@
 extends PanelContainer
 
-onready var date_label:=$VBoxContainer/DateContainer/VBoxContainer/DateLabel
+onready var calendar_button:=$VBoxContainer/DateContainer/VBoxContainer/CalendarButton
 onready var hour_label:=$VBoxContainer/DateContainer/VBoxContainer/HBoxContainer/HourLabel
 onready var minute_label:=$VBoxContainer/DateContainer/VBoxContainer/HBoxContainer/MinuteLabel
 
@@ -50,7 +50,7 @@ func _notification(what):
 
 func refresh_date():
 	var date_time:DateTime = note.date_time
-	date_label.text = date_time.get_date_string()
+	calendar_button.text = date_time.get_date_string()
 	
 	
 func _on_CalendarButton_date_selected(date_obj:Date) -> void:
