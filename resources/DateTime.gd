@@ -28,7 +28,6 @@ func _init(day:int=Calendar.day(),month:int=Calendar.month(),year:int=Calendar.y
 	self.minute = minute
 	
 
-
 func move_to_year_beginning():
 	month=1
 	day=1

@@ -19,6 +19,7 @@ var note:NoteResource
 func _ready() -> void:
 	get_tree().set_quit_on_go_back(false)
 	
+
 	if Globals.selected_note != null:
 		note = Globals.selected_note
 	else:
@@ -28,8 +29,7 @@ func _ready() -> void:
 			note.date_time.month = Globals.selected_date.month
 			note.date_time.year = Globals.selected_date.year
 	
-		
-	
+
 	refresh_date()
 	select_button(note.mood)
 	update_hour_minute_text(note.date_time.hour,note.date_time.minute)
@@ -42,13 +42,9 @@ func _ready() -> void:
 
 func _notification(what):
 	if what == MainLoop.NOTIFICATION_WM_GO_BACK_REQUEST:
-		if Globals.selected_note:
-			Globals.selected_note=null
 		confirmation_dialog.popup()
 
 	
-	
-
 func refresh_date():
 	var date_time:DateTime = note.date_time
 	calendar_button.text = date_time.get_date_string()
@@ -60,9 +56,6 @@ func _on_CalendarButton_date_selected(date_obj:Date) -> void:
 	date_time.month = date_obj.month()
 	date_time.year = date_obj.year()
 	refresh_date()
-		
-
-
 		
 
 func select_button(mood):
@@ -94,6 +87,8 @@ func _on_SaveButton_pressed() -> void:
 	note.text = text_edit.text
 	if not Globals.selected_note:
 		NoteDatabase.add_note(note)
+	else:
+		Globals.selected_note=null
 	switch_to_previous_scene()
 
 func _on_Camera_toggled(button_pressed: bool) -> void:
@@ -125,6 +120,7 @@ func _on_DeleteButton_pressed() -> void:
 func _on_ConfirmationDialog_confirmed() -> void:
 	if scheduled_deletion:
 		NoteDatabase.delete_note(note)
+	Globals.selected_note=null
 	switch_to_previous_scene()
 
 func cancelled():

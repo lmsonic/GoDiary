@@ -105,7 +105,6 @@ func happy_day_streak()->int:
 		
 		var average:= Utils.average_moods(date_moods) - 1
 	
-		print(average)
 		if average >= NoteResource.Mood.Content:
 			streak +=1
 		else:

@@ -6,11 +6,12 @@ var add_note:=preload("res://scenes/AddNote.tscn")
 
 
 func _ready() -> void:
+
 	var notes_resources = NoteDatabase.load_notes()
 	
 	for note_resource in notes_resources:
 		var note:Note=note_prefab.instance()
-		note.note =note_resource
+		note.note=note_resource
 		notes_container.add_child(note)
 
 
