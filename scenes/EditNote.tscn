@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://scenes/AddNote.gd" type="Script" id=1]
 [ext_resource path="res://assets/emojis/moods/4content.png" type="Texture" id=2]
@@ -25,6 +25,10 @@
 size = 80
 font_data = ExtResource( 13 )
 
+[sub_resource type="DynamicFont" id=6]
+size = 80
+font_data = ExtResource( 13 )
+
 [sub_resource type="DynamicFont" id=5]
 size = 60
 font_data = ExtResource( 13 )
@@ -47,22 +51,23 @@ margin_bottom = 2335.0
 
 [node name="Title3" type="Label" parent="VBoxContainer"]
 margin_right = 1070.0
-margin_bottom = 193.0
+margin_bottom = 291.0
 custom_fonts/font = SubResource( 1 )
 text = "
+
 "
 align = 1
 valign = 1
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 197.0
+margin_top = 295.0
 margin_right = 1070.0
-margin_bottom = 390.0
+margin_bottom = 410.0
 alignment = 1
 
 [node name="DeleteButton" type="TextureButton" parent="VBoxContainer/HBoxContainer3"]
 margin_right = 354.0
-margin_bottom = 193.0
+margin_bottom = 115.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture_normal = ExtResource( 21 )
@@ -73,34 +78,31 @@ stretch_mode = 5
 [node name="Title" type="Label" parent="VBoxContainer/HBoxContainer3"]
 margin_left = 358.0
 margin_right = 712.0
-margin_bottom = 193.0
+margin_bottom = 115.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 1 )
-text = "
-Edit Note"
+text = "Edit Note"
 align = 1
 valign = 1
 
-[node name="Title2" type="Label" parent="VBoxContainer/HBoxContainer3"]
+[node name="SaveButton" type="Button" parent="VBoxContainer/HBoxContainer3"]
 margin_left = 716.0
 margin_right = 1070.0
-margin_bottom = 193.0
+margin_bottom = 115.0
 size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_fonts/font = SubResource( 1 )
-align = 1
-valign = 1
+custom_fonts/font = SubResource( 6 )
+text = "SAVE"
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
-margin_top = 394.0
+margin_top = 414.0
 margin_right = 1070.0
-margin_bottom = 404.0
+margin_bottom = 424.0
 
 [node name="Title2" type="Label" parent="VBoxContainer"]
-margin_top = 408.0
+margin_top = 428.0
 margin_right = 1070.0
-margin_bottom = 468.0
+margin_bottom = 488.0
 size_flags_vertical = 1
 size_flags_stretch_ratio = 0.3
 text = "Date"
@@ -108,20 +110,20 @@ align = 1
 valign = 1
 
 [node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
-margin_top = 472.0
+margin_top = 492.0
 margin_right = 1070.0
-margin_bottom = 482.0
+margin_bottom = 502.0
 
 [node name="DateContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 486.0
+margin_top = 506.0
 margin_right = 1070.0
-margin_bottom = 717.0
+margin_bottom = 733.0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.46
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/DateContainer"]
 margin_right = 1070.0
-margin_bottom = 231.0
+margin_bottom = 227.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.66
@@ -129,7 +131,7 @@ size_flags_stretch_ratio = 0.66
 [node name="CalendarButton" type="Button" parent="VBoxContainer/DateContainer/VBoxContainer"]
 margin_left = 384.0
 margin_right = 685.0
-margin_bottom = 127.0
+margin_bottom = 124.0
 size_flags_horizontal = 6
 size_flags_vertical = 3
 size_flags_stretch_ratio = 1.27
@@ -138,9 +140,9 @@ text = "21 Nov 1997"
 script = ExtResource( 12 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/DateContainer/VBoxContainer"]
-margin_top = 131.0
+margin_top = 128.0
 margin_right = 1070.0
-margin_bottom = 231.0
+margin_bottom = 227.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
@@ -148,7 +150,7 @@ alignment = 1
 [node name="HourLabel" type="LineEdit" parent="VBoxContainer/DateContainer/VBoxContainer/HBoxContainer"]
 margin_left = 359.0
 margin_right = 523.0
-margin_bottom = 100.0
+margin_bottom = 99.0
 size_flags_vertical = 3
 text = "10"
 align = 1
@@ -157,7 +159,7 @@ max_length = 2
 [node name="Label" type="Label" parent="VBoxContainer/DateContainer/VBoxContainer/HBoxContainer"]
 margin_left = 527.0
 margin_right = 542.0
-margin_bottom = 100.0
+margin_bottom = 99.0
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 5 )
 text = ":"
@@ -167,7 +169,7 @@ valign = 1
 [node name="MinuteLabel" type="LineEdit" parent="VBoxContainer/DateContainer/VBoxContainer/HBoxContainer"]
 margin_left = 546.0
 margin_right = 710.0
-margin_bottom = 100.0
+margin_bottom = 99.0
 size_flags_vertical = 3
 text = "00"
 align = 1
@@ -176,22 +178,22 @@ context_menu_enabled = false
 shortcut_keys_enabled = false
 
 [node name="HSeparator3" type="HSeparator" parent="VBoxContainer"]
-margin_top = 721.0
+margin_top = 737.0
 margin_right = 1070.0
-margin_bottom = 731.0
+margin_bottom = 747.0
 
 [node name="Label" type="Label" parent="VBoxContainer"]
-margin_top = 735.0
+margin_top = 751.0
 margin_right = 1070.0
-margin_bottom = 795.0
+margin_bottom = 811.0
 size_flags_vertical = 1
 text = "Mood"
 align = 1
 
 [node name="ButtonsContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 799.0
+margin_top = 815.0
 margin_right = 1070.0
-margin_bottom = 999.0
+margin_bottom = 1015.0
 alignment = 1
 
 [node name="SadButton" type="TextureButton" parent="VBoxContainer/ButtonsContainer"]
@@ -253,34 +255,34 @@ expand = true
 stretch_mode = 5
 
 [node name="HSeparator4" type="HSeparator" parent="VBoxContainer"]
-margin_top = 1003.0
+margin_top = 1019.0
 margin_right = 1070.0
-margin_bottom = 1013.0
+margin_bottom = 1029.0
 
 [node name="Text" type="Label" parent="VBoxContainer"]
-margin_top = 1017.0
+margin_top = 1033.0
 margin_right = 1070.0
-margin_bottom = 1077.0
+margin_bottom = 1093.0
 size_flags_vertical = 1
 text = "Text"
 align = 1
 
 [node name="TextEdit" type="TextEdit" parent="VBoxContainer"]
-margin_top = 1081.0
+margin_top = 1097.0
 margin_right = 1070.0
-margin_bottom = 1585.0
+margin_bottom = 1593.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="HSeparator5" type="HSeparator" parent="VBoxContainer"]
-margin_top = 1589.0
+margin_top = 1597.0
 margin_right = 1070.0
-margin_bottom = 1599.0
+margin_bottom = 1607.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 1603.0
+margin_top = 1611.0
 margin_right = 1070.0
-margin_bottom = 1703.0
+margin_bottom = 1711.0
 alignment = 2
 
 [node name="Camera" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
@@ -304,9 +306,9 @@ texture_pressed = ExtResource( 19 )
 expand = true
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 1707.0
+margin_top = 1715.0
 margin_right = 1070.0
-margin_bottom = 1822.0
+margin_bottom = 1830.0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.18
 
@@ -333,7 +335,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Label3" type="Label" parent="VBoxContainer"]
-margin_top = 1826.0
+margin_top = 1834.0
 margin_right = 1070.0
 margin_bottom = 2330.0
 size_flags_horizontal = 3
