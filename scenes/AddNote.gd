@@ -36,6 +36,9 @@ func _ready() -> void:
 	text_edit.text=note.text
 	camera_button.pressed = note.photo != null
 	audio_button.pressed = note.audio != null
+	
+	confirmation_dialog.get_cancel().connect("pressed", self, "cancelled")
+
 
 func _notification(what):
 	if what == MainLoop.NOTIFICATION_WM_GO_BACK_REQUEST:
@@ -124,6 +127,8 @@ func _on_ConfirmationDialog_confirmed() -> void:
 		NoteDatabase.delete_note(note)
 	switch_to_previous_scene()
 
+func cancelled():
+	scheduled_deletion = false
 
 func _on_text_entered(new_text: String) -> void:
 	OS.hide_virtual_keyboard()

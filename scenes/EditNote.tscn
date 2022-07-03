@@ -345,8 +345,10 @@ dialog_text = "The note you are editing will be deleted, are you sure?"
 dialog_autowrap = true
 
 [node name="HourMinutePopup" parent="Control" instance=ExtResource( 14 )]
+visible = false
 
 [connection signal="pressed" from="VBoxContainer/HBoxContainer3/DeleteButton" to="." method="_on_DeleteButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer3/SaveButton" to="." method="_on_SaveButton_pressed"]
 [connection signal="date_selected" from="VBoxContainer/DateContainer/VBoxContainer/CalendarButton" to="." method="_on_CalendarButton_date_selected"]
 [connection signal="pressed" from="VBoxContainer/DateContainer/VBoxContainer/HourMinuteButton" to="." method="_on_HourMinuteButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/ButtonsContainer/SadButton" to="." method="_on_SadButton_pressed"]
