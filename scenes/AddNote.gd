@@ -1,19 +1,17 @@
 extends PanelContainer
 
 onready var calendar_button:=$VBoxContainer/DateContainer/VBoxContainer/CalendarButton
-onready var hour_label:=$VBoxContainer/DateContainer/VBoxContainer/HBoxContainer/HourLabel
-onready var minute_label:=$VBoxContainer/DateContainer/VBoxContainer/HBoxContainer/MinuteLabel
+onready var hour_minute_button:=$VBoxContainer/DateContainer/VBoxContainer/HourMinuteButton
 
-onready var confirmation_dialog:=$Control/ConfirmationDialog
+
+onready var confirmation_dialog:ConfirmationDialog=$Control/ConfirmationDialog
+onready var hour_minute_popup:Popup=$Control/HourMinutePopup
 
 onready var text_edit:=$VBoxContainer/TextEdit
 onready var camera_button:=$VBoxContainer/HBoxContainer/Camera
 onready var audio_button:=$VBoxContainer/HBoxContainer/Microphone
 
-onready var hour_minute_container:=$VBoxContainer/DateContainer/VBoxContainer/HBoxContainer
-
 onready var buttons_container:=$VBoxContainer/ButtonsContainer
-onready var tween:Tween=$Tween
 
 
 var note:NoteResource
@@ -33,19 +31,18 @@ func _ready() -> void:
 		
 	
 	refresh_date()
-	hour_label.text = str(note.date_time.hour).pad_zeros(2)
-	minute_label.text = str(note.date_time.minute).pad_zeros(2)
 	select_button(note.mood)
+	update_hour_minute_text(note.date_time.hour,note.date_time.minute)
 	text_edit.text=note.text
 	camera_button.pressed = note.photo != null
 	audio_button.pressed = note.audio != null
-
 
 func _notification(what):
 	if what == MainLoop.NOTIFICATION_WM_GO_BACK_REQUEST:
 		if Globals.selected_note:
 			Globals.selected_note=null
 		confirmation_dialog.popup()
+
 	
 	
 
@@ -61,51 +58,8 @@ func _on_CalendarButton_date_selected(date_obj:Date) -> void:
 	date_time.year = date_obj.year()
 	refresh_date()
 		
-		
-func _on_HourLabel_focus_exited() -> void:
-	if hour_label.text.is_valid_integer():
-		var hour:= int(hour_label.text)
-		if hour >= 0  and hour < 24 :
-			note.date_time.hour = hour
-			return
-			
-	hour_label.text="00"
-	tween_to(hour_label,Color.red)
 
 
-func _on_MinuteLabel_focus_exited() -> void:
-	if minute_label.text.is_valid_integer():
-		var minute:= int(minute_label.text)
-		if minute >= 0  and minute < 60 :
-			note.date_time.minute = minute
-			return
-	
-	minute_label.text="00"
-	tween_to(minute_label,Color.red)
-
-	
-func tween_to(object:Control,color:Color):
-	tween.interpolate_property(object,"modulate",Color.white,color,0.25)
-	tween.interpolate_property(object,"modulate",color,Color.white,0.25)
-	tween.start()
-
-	
-func _on_HourLabel_text_changed(new_text: String) -> void:
-	if not new_text.is_valid_integer():
-		hour_label.text=""
-	elif int(new_text) < 0:
-		hour_label.text="00"
-	elif int(new_text) >= 24:
-		hour_label.text="23"
-
-
-func _on_MinuteLabel_text_changed(new_text: String) -> void:
-	if not new_text.is_valid_integer():
-		minute_label.text=""
-	elif int(new_text) < 0:
-		minute_label.text="00"
-	elif int(new_text) >= 60:
-		minute_label.text="59"
 		
 
 func select_button(mood):
@@ -135,7 +89,8 @@ func _on_HappyButton_pressed() -> void:
 
 func _on_SaveButton_pressed() -> void:
 	note.text = text_edit.text
-	NoteDatabase.add_note(note)
+	if not Globals.selected_note:
+		NoteDatabase.add_note(note)
 	switch_to_previous_scene()
 
 func _on_Camera_toggled(button_pressed: bool) -> void:
@@ -168,3 +123,19 @@ func _on_ConfirmationDialog_confirmed() -> void:
 	if scheduled_deletion:
 		NoteDatabase.delete_note(note)
 	switch_to_previous_scene()
+
+
+func _on_text_entered(new_text: String) -> void:
+	OS.hide_virtual_keyboard()
+
+func _on_HourMinuteButton_pressed() -> void:
+	hour_minute_popup.popup()
+	hour_minute_popup.set_hour_minute(note.date_time.hour,note.date_time.minute)
+
+func update_hour_minute_text(hour:int, minute:int):
+	hour_minute_button.text =str(hour).pad_zeros(2) + " : " + str(minute).pad_zeros(2)
+
+func _on_HourMinutePopup_hour_minute_changed(hour:int, minute:int) -> void:
+	update_hour_minute_text(hour,minute)
+	note.date_time.hour = hour 
+	note.date_time.minute = minute 

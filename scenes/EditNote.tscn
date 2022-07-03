@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://scenes/AddNote.gd" type="Script" id=1]
 [ext_resource path="res://assets/emojis/moods/4content.png" type="Texture" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://assets/emojis/moods/3meh.png" type="Texture" id=11]
 [ext_resource path="res://scenes/calendar_button.gd" type="Script" id=12]
 [ext_resource path="res://Roboto-Regular.ttf" type="DynamicFontData" id=13]
+[ext_resource path="res://scenes/HourMinutePopup.tscn" type="PackedScene" id=14]
 [ext_resource path="res://theme.tres" type="Theme" id=16]
 [ext_resource path="res://assets/microphone.png" type="Texture" id=17]
 [ext_resource path="res://assets/camerawhite.png" type="Texture" id=18]
@@ -29,8 +30,14 @@ font_data = ExtResource( 13 )
 size = 80
 font_data = ExtResource( 13 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=7]
 size = 60
+use_filter = true
+font_data = ExtResource( 13 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 60
+use_filter = true
 font_data = ExtResource( 13 )
 
 [sub_resource type="DynamicFont" id=2]
@@ -129,53 +136,26 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 0.66
 
 [node name="CalendarButton" type="Button" parent="VBoxContainer/DateContainer/VBoxContainer"]
-margin_left = 384.0
-margin_right = 685.0
+margin_left = 355.0
+margin_right = 715.0
 margin_bottom = 124.0
 size_flags_horizontal = 6
 size_flags_vertical = 3
 size_flags_stretch_ratio = 1.27
+custom_fonts/font = SubResource( 7 )
 toggle_mode = true
 text = "21 Nov 1997"
 script = ExtResource( 12 )
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/DateContainer/VBoxContainer"]
+[node name="HourMinuteButton" type="Button" parent="VBoxContainer/DateContainer/VBoxContainer"]
+margin_left = 434.0
 margin_top = 128.0
-margin_right = 1070.0
+margin_right = 635.0
 margin_bottom = 227.0
-size_flags_horizontal = 3
+size_flags_horizontal = 6
 size_flags_vertical = 3
-alignment = 1
-
-[node name="HourLabel" type="LineEdit" parent="VBoxContainer/DateContainer/VBoxContainer/HBoxContainer"]
-margin_left = 359.0
-margin_right = 523.0
-margin_bottom = 99.0
-size_flags_vertical = 3
-text = "10"
-align = 1
-max_length = 2
-
-[node name="Label" type="Label" parent="VBoxContainer/DateContainer/VBoxContainer/HBoxContainer"]
-margin_left = 527.0
-margin_right = 542.0
-margin_bottom = 99.0
-size_flags_vertical = 3
-custom_fonts/font = SubResource( 5 )
-text = ":"
-align = 1
-valign = 1
-
-[node name="MinuteLabel" type="LineEdit" parent="VBoxContainer/DateContainer/VBoxContainer/HBoxContainer"]
-margin_left = 546.0
-margin_right = 710.0
-margin_bottom = 99.0
-size_flags_vertical = 3
-text = "00"
-align = 1
-max_length = 2
-context_menu_enabled = false
-shortcut_keys_enabled = false
+custom_fonts/font = SubResource( 8 )
+text = "10 : 00"
 
 [node name="HSeparator3" type="HSeparator" parent="VBoxContainer"]
 margin_top = 737.0
@@ -341,14 +321,15 @@ margin_bottom = 2330.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Tween" type="Tween" parent="."]
-
 [node name="Control" type="Control" parent="."]
 margin_left = 5.0
 margin_top = 5.0
 margin_right = 1075.0
 margin_bottom = 2335.0
 mouse_filter = 2
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="ConfirmationDialog" type="ConfirmationDialog" parent="Control"]
 anchor_left = 0.5
@@ -363,12 +344,11 @@ window_title = ""
 dialog_text = "The note you are editing will be deleted, are you sure?"
 dialog_autowrap = true
 
+[node name="HourMinutePopup" parent="Control" instance=ExtResource( 14 )]
+
 [connection signal="pressed" from="VBoxContainer/HBoxContainer3/DeleteButton" to="." method="_on_DeleteButton_pressed"]
 [connection signal="date_selected" from="VBoxContainer/DateContainer/VBoxContainer/CalendarButton" to="." method="_on_CalendarButton_date_selected"]
-[connection signal="focus_exited" from="VBoxContainer/DateContainer/VBoxContainer/HBoxContainer/HourLabel" to="." method="_on_HourLabel_focus_exited"]
-[connection signal="text_changed" from="VBoxContainer/DateContainer/VBoxContainer/HBoxContainer/HourLabel" to="." method="_on_HourLabel_text_changed"]
-[connection signal="focus_exited" from="VBoxContainer/DateContainer/VBoxContainer/HBoxContainer/MinuteLabel" to="." method="_on_MinuteLabel_focus_exited"]
-[connection signal="text_changed" from="VBoxContainer/DateContainer/VBoxContainer/HBoxContainer/MinuteLabel" to="." method="_on_MinuteLabel_text_changed"]
+[connection signal="pressed" from="VBoxContainer/DateContainer/VBoxContainer/HourMinuteButton" to="." method="_on_HourMinuteButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/ButtonsContainer/SadButton" to="." method="_on_SadButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/ButtonsContainer/DissatisfiedButton" to="." method="_on_DissatisfiedButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/ButtonsContainer/MehButton" to="." method="_on_MehButton_pressed"]
@@ -378,3 +358,4 @@ dialog_autowrap = true
 [connection signal="toggled" from="VBoxContainer/HBoxContainer/Microphone" to="." method="_on_Microphone_toggled"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer2/SaveButton" to="." method="_on_SaveButton_pressed"]
 [connection signal="confirmed" from="Control/ConfirmationDialog" to="." method="_on_ConfirmationDialog_confirmed"]
+[connection signal="hour_minute_changed" from="Control/HourMinutePopup" to="." method="_on_HourMinutePopup_hour_minute_changed"]
