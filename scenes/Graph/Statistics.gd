@@ -61,7 +61,7 @@ func longest_happy_day_streak()->int:
 	
 	var last_date:= today
 	while i < notes.size():
-		var date:DateTime = notes[i].date_time
+		var date:DateTime = notes[i].date_time.duplicate()
 		if Utils.days_between_dates(date,last_date) > 1: 
 			streak = 0
 			
@@ -97,7 +97,7 @@ func happy_day_streak()->int:
 	var streak := 0
 	var last_date:= today
 	while i < notes.size():
-		var date:DateTime = notes[i].date_time
+		var date:DateTime = notes[i].date_time.duplicate()
 		if Utils.days_between_dates(date,last_date) > 1: 
 			return streak
 		var date_moods:=NoteDatabase.get_moods_for_date(date)
@@ -148,7 +148,7 @@ func days_passed_from_worst_mood()->int:
 	var worst_mood_date:DateTime = today
 	
 	while i < notes.size():
-		var date:DateTime = notes[i].date_time
+		var date:DateTime = notes[i].date_time.duplicate()
 		var date_moods:=NoteDatabase.get_moods_for_date(date)
 		if date_moods.find(NoteResource.Mood.Sad) != -1: 
 			worst_mood_date = date
